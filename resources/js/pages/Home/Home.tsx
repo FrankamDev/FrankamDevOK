@@ -1,22 +1,22 @@
+import { Link, usePage } from '@inertiajs/react';
+import { motion } from "framer-motion";
+import { useEffect } from 'react';
+import { FaArrowRight } from 'react-icons/fa6';
+import { ToastContainer, toast } from 'react-toastify';
+import Member from '@/components/Member';
+import Footer from '../../components/Footer';
+import NavBar from '../../components/NavBar';
 import AnotherQuestion from './HomeComponents/AnotherQuestion';
 import CardBuild from './HomeComponents/CardBuild';
 import CardTestimanial from './HomeComponents/CardTestimanial';
 import CercleRotate from './HomeComponents/CercleRotate';
 import Compagnies from './HomeComponents/Compagnies';
-import Footer from '../../components/Footer';
+import Hero from './HomeComponents/Hero';
 import MeetMe from './HomeComponents/MeetMe';
-import NavBar from '../../components/NavBar';
 import Questions from './HomeComponents/Questions';
 import Quotes from './HomeComponents/Quotes';
 import SubscriptionCard from './HomeComponents/SubscriptionCard';
 import Testimonial from './HomeComponents/Testimonial';
-import { Link, usePage } from '@inertiajs/react';
-import { useEffect } from 'react';
-import { FaArrowRight } from 'react-icons/fa6';
-import { ToastContainer, toast } from 'react-toastify';
-import Hero from './HomeComponents/Hero';
-import { motion } from "framer-motion";
-import Member from '@/components/Member';
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -158,7 +158,10 @@ export default function Home() {
 
 
         <Member />
-        <Footer />
+        <div className="">
+
+          {/* <Footer /> */}
+        </div>
       </div>
     </>
   );
