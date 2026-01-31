@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { FaArrowRight } from 'react-icons/fa6';
 import { ToastContainer, toast } from 'react-toastify';
 import Member from '@/components/Member';
+import SignatureCard from '@/components/SignatureCard';
 import Footer from '../../components/Footer';
 import NavBar from '../../components/NavBar';
 import AnotherQuestion from './HomeComponents/AnotherQuestion';
@@ -158,9 +159,22 @@ export default function Home() {
 
 
         <Member />
+        <SignatureCard
+          fullName="Frank MbaFrank Kamgang"
+          mainRole="Architecte Du Web & Graphiste"
+          avatarUrl="/me.png"
+          tagline="Créer des expériences d'apprentissage qui marquent durablement."
+          specialties={["IA & Éducation", "Micro-learning immersif", "Gamification avancée"]}
+          certifications={["Certified AI Educator", "Neuroscience & Learning Design", "Expert Articulate 360"]}
+          yearsExperience={13}
+          email="hello@elaarning.cm"
+          website="https://elaarning.cm"
+          linkedin="https://www.linkedin.com/in/frank-mbarga"
+          primaryGradient="from-teal-400 via-emerald-500 to-cyan-600"
+        />
         <div className="">
 
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </div>
     </>

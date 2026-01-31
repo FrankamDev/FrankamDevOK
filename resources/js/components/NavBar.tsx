@@ -18,21 +18,26 @@ const NavBar = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const navLinks = [
+    // {
+    //   name: 'Initiation',
+    //   href: '/initiation',
+    //   icon: <BookOpen size={16} />,
+    // },
     {
-      name: 'Initiation',
-      href: '/initiation',
-      icon: <BookOpen size={16} />,
+      name: 'Blog',
+      href: '/blog',
+      icon: <BookOpen size={16} />
     },
-    {
-      name: 'Parcours',
-      href: '/parcours',
-      icon: <BookOpen size={16} />,
-    },
-    {
-      name: 'Formations',
-      href: '/formation',
-      icon: <BookOpen size={16} />,
-    },
+    // {
+    //   name: 'Parcours',
+    //   href: '/parcours',
+    //   icon: <BookOpen size={16} />,
+    // },
+    // {
+    //   name: 'Formations',
+    //   href: '/formation',
+    //   icon: <BookOpen size={16} />,
+    // },
 
     {
       name: 'Controle',
