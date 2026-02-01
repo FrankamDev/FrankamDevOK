@@ -7,6 +7,7 @@ import Member from '@/components/Member';
 import SignatureCard from '@/components/SignatureCard';
 import Footer from '../../components/Footer';
 import NavBar from '../../components/NavBar';
+import Test from '../../components/Test';
 import AnotherQuestion from './HomeComponents/AnotherQuestion';
 import CardBuild from './HomeComponents/CardBuild';
 import CardTestimanial from './HomeComponents/CardTestimanial';
@@ -173,7 +174,7 @@ export default function Home() {
           primaryGradient="from-teal-400 via-emerald-500 to-cyan-600"
         />
         <div className="">
-
+          <Test />
           <Footer />
         </div>
       </div>
