@@ -874,7 +874,7 @@ export default function BlogShow() {
             </motion.article>
 
             {/* Sommaire */}
-            <aside className="lg:col-span-4 lg:sticky lg:top-24 lg:h-fit order-first lg:order-last">
+            <aside className="lg:col-span-4  sm:block hidden lg:sticky lg:top-24 lg:h-fit order-first lg:order-last">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

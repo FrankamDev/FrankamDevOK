@@ -63,23 +63,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="Découvrez FrankamDev : votre plateforme de services informatiques, formations web et maintenance. Tout est en français, simple et rapide.">
+    <meta name="description" content="Découvrez FrankamDev : votre plateforme de d'apprentissage et astuces informatique, formations web et maintenance. Tout est en français, simple et rapide.">
 <meta name="keywords" content="FrankamDev, informatique, développement web, formations web, maintenance, caméras de surveillance, e-learning, React, Laravel">
 <meta name="author" content="Frank Kamgang">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="{{ config('app.name', 'FrankamDev') }}">
-<meta property="og:description" content="FrankamDev : services informatiques, formations web et maintenance pour tous.">
+<meta property="og:description" content="FrankamDev : d'apprentissage informatiques, formations web et maintenance pour tous.">
 <meta property="og:image" content="{{ asset('images/social-preview.png') }}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ config('app.name', 'FrankamDev') }}">
-<meta name="twitter:description" content="FrankamDev : services informatiques, formations web et maintenance.">
+<meta name="twitter:description" content="FrankamDev : d'apprentissage informatiques, formations web et maintenance.">
 <meta name="twitter:image" content="{{ asset('images/social-preview.png') }}">
 <meta name="twitter:site" content="@TonPseudoLinkedIn">
 
 <meta property="og:url" content="{{ url()->current() }}">
 <meta property="og:type" content="website">
     <title inertia>{{ config('app.name', 'FrankamDev') }}</title>
-    <link rel="icon" href="{{ asset('images/') }}">
+    {{-- <link rel="icon" href="{{ asset('') }}"> --}}
     <script>
         (function() {
             const appearance = '{{ $appearance ?? 'system' }}';
@@ -94,7 +94,7 @@
         })();
     </script>
 
-    {{-- Inline style to set the HTML background color based on our theme in app.css --}}
+
     <style>
         html {
             background-color: oklch(1 0 0);
@@ -105,7 +105,7 @@
         }
     </style>
 
-    <title inertia>{{ config('app.name', 'FrankamdemDev') }}</title>
+    <title inertia>{{ config('app.name', 'FrankamDev') }}</title>
 
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
