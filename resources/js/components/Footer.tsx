@@ -250,7 +250,7 @@ export default function Footer() {
               Politique de confidentialité
             </Link>
             <span className="flex items-center gap-1.5">
-              Fait avec <FaHeart className="text-red-500 text-xs" /> en Afrique
+              Fait avec <FaHeart className="text-red-500 text-xs" /> par FrankamDev
             </span>
           </div>
 
