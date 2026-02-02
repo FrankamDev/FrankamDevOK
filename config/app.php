@@ -13,8 +13,9 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
-
+    'name' => env('APP_NAME', 'FrankamDev'),
+'locale' => 'fr',
+'fallback_locale' => 'fr',
     /*
     |--------------------------------------------------------------------------
     | Application Environment
