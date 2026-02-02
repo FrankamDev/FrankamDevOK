@@ -45,7 +45,6 @@ const NavBar = () => {
       icon: <LayoutDashboard size={16} />,
     },
   ];
-  const { t } = useTranslation();
 
   // Scroll background effect
   useEffect(() => {
@@ -148,7 +147,7 @@ const NavBar = () => {
                 href="/login"
                 className="rounded bg-blue-600 px-4 py-2 text-white"
               >
-                Se Connecter
+                Connexion
               </Link>
             )}
 

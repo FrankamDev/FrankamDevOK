@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { FaArrowRight } from 'react-icons/fa6';
 import { ToastContainer, toast } from 'react-toastify';
 import Member from '@/components/Member';
-import SignatureCard from '@/components/SignatureCard';
+
 import Footer from '../../components/Footer';
 import NavBar from '../../components/NavBar';
 import Test from '../../components/Test';
@@ -17,8 +17,7 @@ import Hero from './HomeComponents/Hero';
 import MeetMe from './HomeComponents/MeetMe';
 import Questions from './HomeComponents/Questions';
 import Quotes from './HomeComponents/Quotes';
-import SubscriptionCard from './HomeComponents/SubscriptionCard';
-import Testimonial from './HomeComponents/Testimonial';
+
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -72,7 +71,7 @@ export default function Home() {
 
         {/* Témoignages */}
         <section className="">
-          <Testimonial />
+          {/* <Testimonial /> */}
         </section>
 
         {/* Partenaires */}
@@ -107,7 +106,7 @@ export default function Home() {
           className="mt-12 flex flex-col items-center px-4 sm:mt-16 sm:px-6 md:px-12"
         >
           <CardBuild />
-          <div className="mt-6 flex flex-col items-center gap-3 sm:mt-8 sm:flex-row sm:gap-4">
+          {/* <div className="mt-6 flex flex-col items-center gap-3 sm:mt-8 sm:flex-row sm:gap-4">
             <Link
               href="/formation"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#3EAEFF] px-8 py-3 text-sm font-semibold text-white transition-all hover:bg-blue-600 sm:px-12 sm:py-4 sm:text-base"
@@ -122,7 +121,7 @@ export default function Home() {
             >
               Créer ton Chemin ✔
             </Link>
-          </div>
+          </div> */}
         </motion.section>
 
         <motion.section
@@ -142,7 +141,7 @@ export default function Home() {
           className="mt-12 flex flex-col gap-8 px-4 sm:mt-16 sm:gap-12 sm:px-6 md:px-12"
         >
           {/* <Group /> */}
-          <SubscriptionCard />
+          {/* <SubscriptionCard /> */}
         </motion.section>
 
         <motion.section
@@ -156,25 +155,13 @@ export default function Home() {
           <AnotherQuestion />
         </motion.section>
 
-        <CercleRotate />
+        {/* <CercleRotate /> */}
 
 
         <Member />
-        <SignatureCard
-          fullName="Frank MbaFrank Kamgang"
-          mainRole="Architecte Du Web & Graphiste"
-          avatarUrl="/me.png"
-          tagline="Créer des expériences d'apprentissage qui marquent durablement."
-          specialties={["IA & Éducation", "Micro-learning immersif", "Gamification avancée"]}
-          certifications={["Certified AI Educator", "Neuroscience & Learning Design", "Expert Articulate 360"]}
-          yearsExperience={13}
-          email="hello@elaarning.cm"
-          website="https://elaarning.cm"
-          linkedin="https://www.linkedin.com/in/frank-mbarga"
-          primaryGradient="from-teal-400 via-emerald-500 to-cyan-600"
-        />
+
         <div className="">
-          <Test />
+          {/* <Test /> */}
           <Footer />
         </div>
       </div>
