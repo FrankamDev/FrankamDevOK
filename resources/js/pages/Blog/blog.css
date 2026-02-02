@@ -1,36 +1,326 @@
-@layer utilities {
-  /* Glow + gradient border animé subtil */
-  .group:hover .glow-border {
-    animation: border-glow 3s ease-in-out infinite;
+/********************************************************************************
+ *                  BLOG / RICH TEXT – Ultra Pro Style 2026                     *
+ *                      (Dark mode first – excellent contrast)                  *
+ ********************************************************************************/
+
+.blog-content {
+  --primary: #818cf8;        /* indigo-400 */
+  --primary-dark: #6366f1;   /* indigo-500 */
+  --accent: #c4b5fd;         /* violet-300 */
+  --text: #e5e7eb;           /* gray-200 */
+  --text-secondary: #9ca3af; /* gray-400 */
+  --bg-block: rgba(30, 41, 59, 0.4);
+  --border: rgba(55, 65, 81, 0.5);
+
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.82;
+  font-size: 1.05rem;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   TYPOGRAPHIE & HIÉRARCHIE
+─────────────────────────────────────────────────────────────────────────────── */
+
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4,
+.blog-content h5,
+.blog-content h6 {
+  font-weight: 800;
+  line-height: 1.25;
+  scroll-margin-top: 5rem;
+  position: relative;
+}
+
+.blog-content h1 {
+  font-size: clamp(2.4rem, 5.5vw, 3.5rem);
+  margin: 4.5rem 0 2rem;
+  letter-spacing: -0.025em;
+  color: white;
+}
+
+.blog-content h2 {
+  font-size: clamp(2rem, 4.2vw, 2.6rem);
+  margin: 4rem 0 1.5rem;
+  color: var(--primary);
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.blog-content h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), transparent);
+  border-radius: 9999px;
+}
+
+.blog-content h3 {
+  font-size: clamp(1.6rem, 3.2vw, 1.9rem);
+  margin: 3.2rem 0 1.25rem;
+  color: var(--accent);
+}
+
+.blog-content h4 {
+  font-size: 1.35rem;
+  margin: 2.5rem 0 1rem;
+  color: #d1d5db;
+  font-weight: 700;
+}
+
+.blog-content p {
+  margin-bottom: 1.9rem;
+  font-size: 1.06rem;
+}
+
+.blog-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   LIENS & INTERACTIONS
+─────────────────────────────────────────────────────────────────────────────── */
+
+.blog-content a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+  transition: all 0.18s ease;
+  position: relative;
+}
+
+.blog-content a:hover,
+.blog-content a:focus {
+  color: white;
+  border-bottom-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.blog-content a::after {
+  content: '↗';
+  font-size: 0.75rem;
+  margin-left: 0.3rem;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.blog-content a:hover::after {
+  opacity: 0.7;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   LISTES
+─────────────────────────────────────────────────────────────────────────────── */
+
+.blog-content ul,
+.blog-content ol {
+  margin: 1.8rem 0 1.8rem 1.5rem;
+  padding-left: 0.8rem;
+}
+
+.blog-content ul {
+  list-style: none;
+}
+
+.blog-content ul li {
+  position: relative;
+  padding-left: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.blog-content ul li::before {
+  content: '•';
+  color: var(--primary);
+  position: absolute;
+  left: 0;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.blog-content ol {
+  list-style: none;
+  counter-reset: item;
+}
+
+.blog-content ol li {
+  counter-increment: item;
+  position: relative;
+  padding-left: 2.4rem;
+  margin-bottom: 1.1rem;
+}
+
+.blog-content ol li::before {
+  content: counter(item);
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: 700;
+  width: 1.8rem;
+  height: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(99, 102, 241, 0.15);
+  border-radius: 9999px;
+  font-size: 0.9rem;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   BLOCKQUOTE & CITATIONS
+─────────────────────────────────────────────────────────────────────────────── */
+
+.blog-content blockquote {
+  margin: 3rem 0;
+  padding: 1.6rem 2rem 1.6rem 2.8rem;
+  background: var(--bg-block);
+  border-left: 4px solid var(--primary-dark);
+  border-radius: 0.5rem 0.5rem 0.5rem 0;
+  font-style: italic;
+  color: #d1d5db;
+  position: relative;
+}
+
+.blog-content blockquote::before {
+  content: '“';
+  font-size: 6rem;
+  position: absolute;
+  left: 0.6rem;
+  top: -1.8rem;
+  color: rgba(99, 102, 241, 0.15);
+  line-height: 1;
+  font-family: Georgia, serif;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   CODE & PRE
+─────────────────────────────────────────────────────────────────────────────── */
+
+.blog-content pre {
+  margin: 2.5rem 0;
+  padding: 1.5rem;
+  background: #0f172a;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  border: 1px solid #1e293b;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.blog-content pre:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.25);
+}
+
+.blog-content code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.blog-content pre code {
+  display: block;
+}
+
+/* Inline code */
+.blog-content p code,
+.blog-content li code {
+  background: rgba(99, 102, 241, 0.15);
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.35rem;
+  color: #c4b5fd;
+  font-size: 0.95em;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   TABLEAUX
+─────────────────────────────────────────────────────────────────────────────── */
+
+.blog-content table {
+  width: 100%;
+  margin: 2.5rem 0;
+  border-collapse: collapse;
+  font-size: 0.98rem;
+}
+
+.blog-content th,
+.blog-content td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.blog-content th {
+  background: rgba(30, 41, 59, 0.6);
+  color: white;
+  font-weight: 700;
+}
+
+.blog-content tr:hover {
+  background: rgba(99, 102, 241, 0.08);
+  transition: background 0.15s ease;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   IMAGES
+─────────────────────────────────────────────────────────────────────────────── */
+
+.blog-content img {
+  border-radius: 1rem;
+  margin: 3.5rem auto;
+  max-width: 100%;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.blog-content img:hover {
+  transform: scale(1.015);
+  box-shadow: 0 30px 60px -20px rgba(99, 102, 241, 0.35);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────────
+   RESPONSIVE
+─────────────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .blog-content {
+    font-size: 1.02rem;
   }
 
-  @keyframes border-glow {
-    0%, 100% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
+  .blog-content h1 { margin-top: 3rem; }
+  .blog-content h2 { margin-top: 3.2rem; }
+  .blog-content h3 { margin-top: 2.6rem; }
+
+  .blog-content pre,
+  .blog-content blockquote {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    border-radius: 0;
   }
 
-  /* Optionnel : shine / spotlight subtil sur l'image */
-  .shine-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      120deg,
-      transparent 30%,
-      rgba(255, 255, 255, 0.15) 50%,
-      transparent 70%
-    );
-    background-size: 200% 200%;
-    opacity: 0;
-    transition: opacity 0.6s ease;
-    pointer-events: none;
+  .blog-content table {
+    font-size: 0.92rem;
   }
 
-  .group:hover .shine-overlay {
-    opacity: 1;
-    background-position: 100% 100%;
+  .blog-content th,
+  .blog-content td {
+    padding: 0.85rem 1rem;
   }
+}
+
+/* Très petits écrans */
+@media (max-width: 480px) {
+  .blog-content {
+    font-size: 1rem;
+    line-height: 1.78;
+  }
+
+  .blog-content h1 { font-size: 2.1rem; }
+  .blog-content h2 { font-size: 1.8rem; }
+  .blog-content h3 { font-size: 1.45rem; }
 }
