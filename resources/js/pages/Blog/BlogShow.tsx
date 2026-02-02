@@ -676,14 +676,15 @@
 
 
 
-import { Head, Link, usePage } from "@inertiajs/react";
-import './blog.css';
-import { motion } from "framer-motion";
+
+
+import { Link, usePage } from "@inertiajs/react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { SiInfosys } from "react-icons/si";
+import { FiList, FiX } from "react-icons/fi";
 import Infos from "@/components/Infos";
 import NavBar from "@/components/NavBar";
-
+import './blog.css';
 interface BlogPost {
   id: number;
   title: string;
@@ -703,30 +704,25 @@ interface Props {
 export default function BlogShow() {
   const { post, related_posts = [] }: Props = usePage().props;
 
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [tocItems, setTocItems] = useState<{ id: string; text: string; level: number }[]>([]);
   const contentRef = useRef<HTMLDivElement>(null);
+  const [tocItems, setTocItems] = useState<{ id: string; text: string; level: number }[]>([]);
+  const [activeId, setActiveId] = useState<string>("");
+  const [showMobileToc, setShowMobileToc] = useState(false);
 
-  // Progression de lecture
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-      setScrollProgress(progress);
-    };
+  // Progression de scroll
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Génération sommaire + bouton copier
+  // Génération du sommaire + détection section active
   useEffect(() => {
     if (!contentRef.current || !post?.content) return;
 
-    // Sommaire
-    const headings = contentRef.current.querySelectorAll("h1, h2, h3, h4");
-    const items: { id: string; text: string; level: number }[] = [];
+    const headings = contentRef.current.querySelectorAll("h2, h3, h4");
+    const items: typeof tocItems = [];
 
     headings.forEach((heading, index) => {
       const level = parseInt(heading.tagName.charAt(1));
@@ -734,35 +730,29 @@ export default function BlogShow() {
       heading.id = id;
       items.push({ id, text: heading.textContent?.trim() || "", level });
     });
+
     setTocItems(items);
 
-    // Bouton copier sur les blocs de code
-    const pres = contentRef.current.querySelectorAll("pre");
-    pres.forEach((pre) => {
-      if (pre.querySelector(".copy-btn")) return;
+    // Observer pour highlight actif
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-100px 0px -40% 0px" }
+    );
 
-      const btn = document.createElement("button");
-      btn.className =
-        "copy-btn absolute top-3 right-3 px-3 py-1.5 text-xs bg-slate-800/90 hover:bg-slate-700 rounded-md text-slate-200 font-medium transition z-10 shadow-sm";
-      btn.textContent = "Copier";
+    headings.forEach((h) => observer.observe(h));
 
-      btn.onclick = async () => {
-        try {
-          await navigator.clipboard.writeText(pre.textContent || "");
-          btn.textContent = "Copié ✓";
-          setTimeout(() => (btn.textContent = "Copier"), 2200);
-        } catch {
-          btn.textContent = "Erreur";
-        }
-      };
-
-      pre.style.position = "relative";
-      pre.appendChild(btn);
-    });
+    return () => observer.disconnect();
   }, [post?.content]);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setShowMobileToc(false);
   };
 
   if (!post) {
@@ -775,65 +765,41 @@ export default function BlogShow() {
 
   return (
     <>
-      {/* <Head>
-        <title>{post.title} — FrankamDev</title>
-        <meta
-          name="description"
-          content={
-            post.excerpt ||
-            post.content.slice(0, 158).replace(/<[^>]*>/g, "").trim() + "..."
-          }
-        />
-        <meta property="og:title" content={post.title} />
-        <meta
-          property="og:description"
-          content={
-            post.excerpt ||
-            post.content.slice(0, 158).replace(/<[^>]*>/g, "").trim() + "..."
-          }
-        />
-        <meta
-          property="og:image"
-          content={post.featured_image ? `/storage/${post.featured_image}` : "/og-default.jpg"}
-        />
-        <meta property="og:url" content={window.location.href} />
-        <meta property="og:type" content="article" />
-      </Head> */}
-
-      {/* Barre de progression */}
-      <div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-600 via-purple-600 to-fuchsia-600 z-[9999] origin-left transition-transform duration-150 ease-out shadow-md shadow-indigo-900/30"
-        style={{ transform: `scaleX(${scrollProgress / 100})` }}
+      {/* Barre de progression ultra fluide */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 z-[9999] origin-left shadow-lg shadow-purple-900/40"
+        style={{ scaleX }}
       />
 
       <NavBar />
 
-      <div className="min-h-screen bg-gradient-to-b from-slate-950 via-indigo-950/5 to-slate-950 pt-20 pb-24">
+      <div className="min-h-screen bg-gradient-to-b from-slate-950 via-indigo-950/10 to-slate-950 pt-16 md:pt-20 pb-24 md:pb-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Hero */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="relative overflow-hidden rounded-3xl shadow-2xl shadow-black/40 mb-14"
+            transition={{ duration: 0.9 }}
+            className="relative overflow-hidden rounded-3xl shadow-2xl shadow-black/50 mb-12 md:mb-16"
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent z-10" />
             <img
               src={post.featured_image ? `/storage/${post.featured_image}` : "/placeholder-blog.jpg"}
               alt={post.title}
-              className="w-full h-[50vh] md:h-[65vh] object-cover"
+              // src="./me.png"
+              className="w-full h-[45vh] sm:h-[55vh] md:h-[65vh] lg:h-[70vh] object-cover"
             />
-            <div className="absolute inset-0 z-20 flex items-end pb-12 px-6 md:px-12">
+            <div className="absolute inset-0 z-20 flex items-end pb-8 px-5 sm:px-8 md:px-12">
               <div className="max-w-4xl">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight drop-shadow-2xl">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight drop-shadow-2xl">
                   {post.title}
                 </h1>
 
-                <div className="mt-6 flex flex-wrap gap-4 text-sm sm:text-base">
-                  <span className="px-4 py-1.5 bg-indigo-700/80 backdrop-blur-sm rounded-full text-white font-medium">
+                <div className="mt-5 flex flex-wrap gap-3 text-xs sm:text-sm md:text-base">
+                  <span className="px-3 py-1.5 md:px-4 md:py-2 bg-indigo-700/80 backdrop-blur-sm rounded-full text-white font-medium">
                     {post.reading_time || "—"} min
                   </span>
-                  <span className="px-4 py-1.5 bg-slate-800/70 backdrop-blur-sm rounded-full text-slate-300">
+                  <span className="px-3 py-1.5 md:px-4 md:py-2 bg-slate-800/70 backdrop-blur-sm rounded-full text-slate-200">
                     {new Date(post.created_at).toLocaleDateString("fr-FR", {
                       day: "numeric",
                       month: "long",
@@ -845,44 +811,29 @@ export default function BlogShow() {
             </div>
           </motion.div>
 
-          {/* Contenu + TOC */}
-          <div className="grid overflow-x-hidden           
-    break-words          
-    blog-content
-    
-    
-    prose
-    prose-invert
-    prose-lg
-     
-    prose prose-invert prose-lg max-w-none grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-12">
+          {/* Contenu + Sommaire */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12">
             {/* Article */}
             <motion.article
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="lg:col-span-8 prose prose-invert prose-lg max-w-none"
+              transition={{ duration: 0.8, delay: 0.15 }}
+              className="lg:col-span-8 prose prose-invert prose-lg md:prose-xl max-w-none blog-content leading-relaxed"
               ref={contentRef}
             >
-              <div
-                className="
-                 blog-content
-                  
-                "
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
+              <div dangerouslySetInnerHTML={{ __html: post.content }} />
             </motion.article>
 
-            {/* Sommaire */}
-            <aside className="lg:col-span-4  sm:block hidden lg:sticky lg:top-24 lg:h-fit order-first lg:order-last">
+            {/* Sommaire Desktop */}
+            <aside className="hidden lg:block lg:col-span-4 lg:sticky lg:top-24 lg:h-fit">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 25 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="p-6 bg-slate-900/70 backdrop-blur-md rounded-2xl border border-slate-800/50 shadow-xl"
+                transition={{ duration: 0.8, delay: 0.25 }}
+                className="p-6 bg-slate-900/70 backdrop-blur-xl rounded-2xl border border-slate-700/50 shadow-2xl shadow-black/40"
               >
-                <h3 className="text-xl font-bold text-white mb-5 flex items-center gap-3">
-                  <span className="w-2 h-8 bg-indigo-500 rounded-full inline-block" />
+                <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                  <FiList className="text-indigo-400" />
                   Sommaire
                 </h3>
 
@@ -893,11 +844,12 @@ export default function BlogShow() {
                         key={item.id}
                         onClick={() => scrollTo(item.id)}
                         className={`
-                          w-full text-left transition-colors duration-200
-                          ${item.level === 1 ? "font-semibold text-white" : ""}
-                          ${item.level === 2 ? "pl-4 text-slate-300" : ""}
-                          ${item.level >= 3 ? "pl-8 text-slate-400" : ""}
-                          hover:text-indigo-300
+                          w-full text-left transition-all duration-200 py-1.5 px-3 rounded-lg
+                          ${activeId === item.id
+                            ? "bg-indigo-600/20 text-indigo-300 font-medium"
+                            : "text-slate-300 hover:bg-slate-800/50 hover:text-indigo-300"}
+                          ${item.level === 2 ? "pl-6" : ""}
+                          ${item.level >= 3 ? "pl-10" : ""}
                         `}
                       >
                         {item.text}
@@ -905,21 +857,68 @@ export default function BlogShow() {
                     ))}
                   </nav>
                 ) : (
-                  <p className="text-slate-500 text-sm italic">Aucun sommaire disponible.</p>
+                  <p className="text-slate-500 italic text-sm">Aucun sommaire disponible</p>
                 )}
               </motion.div>
             </aside>
           </div>
 
-          {/* 4 cartes similaires */}
+          {/* Bouton Sommaire Mobile flottant */}
+          <button
+            onClick={() => setShowMobileToc(!showMobileToc)}
+            className="lg:hidden fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-indigo-600 text-white flex items-center justify-center shadow-xl shadow-indigo-900/40 hover:bg-indigo-500 transition-all duration-300"
+          >
+            {showMobileToc ? <FiX size={24} /> : <FiList size={24} />}
+          </button>
+
+          {/* Sommaire Mobile (modal) */}
+          {showMobileToc && (
+            <div className="lg:hidden fixed inset-0 z-40 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+              <motion.div
+                initial={{ scale: 0.85, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.85, opacity: 0 }}
+                className="bg-slate-900/95 backdrop-blur-xl rounded-2xl p-6 max-w-md w-full max-h-[80vh] overflow-y-auto border border-slate-700/60 shadow-2xl"
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-xl font-bold text-white flex items-center gap-3">
+                    <FiList className="text-indigo-400" />
+                    Sommaire
+                  </h3>
+                  <button onClick={() => setShowMobileToc(false)}>
+                    <FiX size={24} className="text-slate-300 hover:text-white" />
+                  </button>
+                </div>
+
+                <nav className="space-y-3 text-base">
+                  {tocItems.map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => scrollTo(item.id)}
+                      className={`
+                        w-full text-left transition-all py-2 px-4 rounded-lg
+                        ${activeId === item.id
+                          ? "bg-indigo-600/30 text-indigo-300 font-medium"
+                          : "text-slate-200 hover:bg-slate-800/60 hover:text-indigo-300"}
+                      `}
+                    >
+                      {item.text}
+                    </button>
+                  ))}
+                </nav>
+              </motion.div>
+            </div>
+          )}
+
+          {/* Articles similaires */}
           {related_posts.length > 0 && (
             <motion.section
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.3 }}
-              className="mt-20"
+              className="mt-16 md:mt-24"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 text-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 md:mb-12 text-center">
                 Articles similaires
               </h2>
 
@@ -928,14 +927,7 @@ export default function BlogShow() {
                   <Link
                     key={related.id}
                     href={`/blog/${related.slug}`}
-                    className="
-                      group block overflow-hidden rounded-2xl
-                      bg-slate-900/70 backdrop-blur-sm
-                      border border-slate-800/50
-                      transition-all duration-300
-                      hover:border-indigo-600/60 hover:shadow-xl hover:shadow-indigo-900/20
-                      hover:-translate-y-1
-                    "
+                    className="group block overflow-hidden rounded-2xl bg-slate-900/70 backdrop-blur-sm border border-slate-800/50 transition-all duration-300 hover:border-indigo-600/60 hover:shadow-xl hover:shadow-indigo-900/30 hover:-translate-y-1"
                   >
                     <div className="relative aspect-[16/9] overflow-hidden">
                       <img
@@ -961,12 +953,11 @@ export default function BlogShow() {
             </motion.section>
           )}
 
-          {/* === Carte horizontale pro en bas === */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.5 }}
-            className="mt-24 mx-auto max-w-5xl"
+            className="mt-20 md:mt-28 mx-auto max-w-5xl"
           >
             <Infos />
           </motion.div>
