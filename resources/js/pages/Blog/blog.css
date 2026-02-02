@@ -324,3 +324,67 @@
   .blog-content h2 { font-size: 1.8rem; }
   .blog-content h3 { font-size: 1.45rem; }
 }
+
+/* blog.css ou dans <style> ou dans ton tailwind */
+
+.blog-content {
+  overflow-x: hidden !important;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* Blocs de code qui dépassent souvent */
+.blog-content pre,
+.blog-content code,
+.blog-content pre code {
+  white-space: pre-wrap;        /* au lieu de pre qui force le scroll */
+  word-wrap: break-word;
+  overflow-x: auto;             /* scroll interne au bloc si vraiment nécessaire */
+  max-width: 100%;
+}
+
+/* Images et tableaux qui peuvent dépasser */
+.blog-content img,
+.blog-content table,
+.blog-content figure {
+  max-width: 100% !important;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Évite les largeurs fixes ou absolues */
+.blog-content * {
+  max-width: 100%;
+}
+
+.blog-content {
+  overflow-x: hidden !important;
+  word-break: break-word;
+  hyphens: auto;
+  max-width: 100%;
+}
+
+.blog-content pre {
+  white-space: pre-wrap !important;
+  overflow-x: auto;
+  max-width: 100%;
+  margin: 1.5rem 0;
+  border-radius: 0.75rem;
+}
+
+.blog-content img,
+.blog-content table,
+.blog-content iframe,
+.blog-content video,
+.blog-content figure {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+.blog-content table {
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+}

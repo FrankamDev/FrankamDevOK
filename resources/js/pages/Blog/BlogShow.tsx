@@ -846,7 +846,16 @@ export default function BlogShow() {
           </motion.div>
 
           {/* Contenu + TOC */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-12">
+          <div className="grid overflow-x-hidden           
+    break-words          
+    blog-content
+    
+    
+    prose
+    prose-invert
+    prose-lg
+     
+    prose prose-invert prose-lg max-w-none grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-12">
             {/* Article */}
             <motion.article
               initial={{ opacity: 0, y: 20 }}
