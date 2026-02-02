@@ -18,11 +18,11 @@ const testimonials = [
     img: ""
   },
   {
-    name: "Nguimfack jean Yannick",
-    title: "Développeur Fullstack",
+    name: "Paul Toumy",
+    title: "Développeur Front-end",
     message:
       "J’ai appris React, Tailwind et la gestion d’API en un mois. Aujourd’hui je travaille sur des projets concrets pour des startups.",
-    img: ""
+    img: "./me.png"
   },
   {
     name: "Jean Joseph",
