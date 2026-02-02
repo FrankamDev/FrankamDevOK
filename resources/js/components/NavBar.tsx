@@ -45,6 +45,7 @@ const NavBar = () => {
       icon: <LayoutDashboard size={16} />,
     },
   ];
+  const { t } = useTranslation();
 
   // Scroll background effect
   useEffect(() => {
