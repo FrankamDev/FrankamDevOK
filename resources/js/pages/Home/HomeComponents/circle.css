@@ -1,0 +1,29 @@
+@keyframes scroll-right {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-scroll-right {
+  animation: scroll-right linear infinite;
+}
+
+.animate-scroll-left {
+  animation: scroll-left linear infinite;
+}
+
+/* Animation feu lumineux autour de la carte */
+@keyframes fire-border {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-fire-border {
+  background-size: 200% 200%;
+  animation: fire-border 8s ease infinite;
+}

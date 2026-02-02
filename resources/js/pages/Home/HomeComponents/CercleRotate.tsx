@@ -1,248 +1,220 @@
+// import { useEffect, useRef } from 'react';
+// import './circle.css'
+// const LOGOS = [
+//   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
+//   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
+//   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
+//   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+//   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
+//   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
+//   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
+//   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
+//   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
+//   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
+//   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg',
+//   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
+//   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg',
+//   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aws/aws-original.svg',
+//   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
+//   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
+//   'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
+// ];
+
+// // Duplique les logos pour un défilement infini fluide
+// const duplicatedLogos = [...LOGOS, ...LOGOS, ...LOGOS];
+
+// export default function TechShowcase() {
+//   const topRef = useRef<HTMLDivElement>(null);
+//   const bottomRef = useRef<HTMLDivElement>(null);
+
+//   useEffect(() => {
+//     const top = topRef.current;
+//     const bottom = bottomRef.current;
+//     if (!top || !bottom) return;
+
+//     // Clone les enfants pour un scroll infini
+//     const cloneChildren = (container: HTMLDivElement) => {
+//       const children = Array.from(container.children);
+//       children.forEach((child) => {
+//         const clone = child.cloneNode(true) as HTMLElement;
+//         container.appendChild(clone);
+//       });
+//     };
+
+//     cloneChildren(top);
+//     cloneChildren(bottom);
+//   }, []);
+
+//   return (
+//     <div className="relative w-full h-[70vh] md:h-screen bg-gradient-to-b from-[#0a001f] to-[#0f002f] overflow-hidden flex items-center justify-center">
+//       {/* Fond subtil avec glow */}
+//       <div className="absolute inset-0 opacity-20 pointer-events-none">
+//         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.1),transparent_50%)]" />
+//       </div>
+
+//       {/* Carte en avant */}
+//       <div className="relative z-20 max-w-md md:max-w-2xl p-8 md:p-12 bg-gradient-to-br from-slate-900/90 to-indigo-950/80 backdrop-blur-md border border-indigo-500/20 rounded-2xl shadow-2xl shadow-indigo-900/40 text-center text-white transform transition-all hover:scale-105 duration-500">
+//         <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">
+//           Écosystème Full-Stack
+//         </h2>
+//         <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+//           Technologies modernes – maîtrisées et connectées pour des projets puissants et scalables.
+//         </p>
+//       </div>
+
+//       {/* Bandes défilantes en arrière-plan */}
+//       <div className="absolute inset-0 z-10 flex flex-col justify-center gap-16 md:gap-24 opacity-50">
+//         {/* Ligne du haut – défile vers la droite */}
+//         <div
+//           ref={topRef}
+//           className="flex whitespace-nowrap animate-scroll-right"
+//           style={{ animationDuration: '60s' }} // Vitesse ajustable
+//         >
+//           {duplicatedLogos.map((src, i) => (
+//             <img
+//               key={`top-${i}`}
+//               src={src}
+//               alt=""
+//               className="w-16 h-16 md:w-24 md:h-24 mx-6 md:mx-10 rounded-full border border-indigo-500/30 shadow-lg shadow-indigo-900/20 transform transition-transform hover:scale-110 duration-300"
+//             />
+//           ))}
+//         </div>
+
+//         {/* Ligne du bas – défile vers la gauche */}
+//         <div
+//           ref={bottomRef}
+//           className="flex whitespace-nowrap animate-scroll-left"
+//           style={{ animationDuration: '70s' }} // Légèrement plus lent pour variété
+//         >
+//           {duplicatedLogos.map((src, i) => (
+//             <img
+//               key={`bottom-${i}`}
+//               src={src}
+//               alt=""
+//               className="w-16 h-16 md:w-24 md:h-24 mx-6 md:mx-10 rounded-full border border-purple-500/30 shadow-lg shadow-purple-900/20 transform transition-transform hover:scale-110 duration-300"
+//             />
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 
 
-'use client';
+import { useEffect, useRef } from 'react';
 
-import { OrbitControls, Stars } from '@react-three/drei';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Suspense, useEffect, useRef } from 'react';
-import * as THREE from 'three';
-// import { lazy, Suspense } from 'react';
-// ──────────────────────────────────────────────────────────────────────────────
-// CONFIGURATION GLOBALE
-// ──────────────────────────────────────────────────────────────────────────────
+const WEB_TECH_LOGOS = [
+  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-plain.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg',
+  'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/remix/remix-original.svg',
+];
 
-const ORBITS = {
-  inner: {
-    radius: 3.2,
-    speed: 0.9,
-    particleCount: 18,
-    logoSize: 0.9,
-  },
-  middle: {
-    radius: 5.8,
-    speed: 0.55,
-    particleCount: 28,
-    logoSize: 1.05,
-  },
-  outer: {
-    radius: 9.2,
-    speed: 0.32,
-    particleCount: 38,
-    logoSize: 1.25,
-  },
-} as const;
+// On duplique pour le scroll infini
+const duplicatedLogos = [...WEB_TECH_LOGOS, ...WEB_TECH_LOGOS, ...WEB_TECH_LOGOS];
 
-const LOGOS = {
-  center: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
-
-  inner: [
-    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
-    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
-    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
-    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
-  ],
-
-  middle: [
-    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
-    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
-    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
-    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
-    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
-    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg',
-  ],
-
-  outer: [
-    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
-    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg',
-    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aws/aws-original.svg',
-    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
-    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
-    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
-  ],
-};
-
-// ──────────────────────────────────────────────────────────────────────────────
-// Composant 3D – Logo tournant
-// ──────────────────────────────────────────────────────────────────────────────
-
-type LogoProps = {
-  url: string;
-  radius: number;
-  angleOffset: number;
-  speed: number;
-  size: number;
-};
-
-function OrbitingLogo({ url, radius, angleOffset, speed, size }: LogoProps) {
-  const ref = useRef<THREE.Mesh>(null!);
-
-  useFrame((state) => {
-    const time = state.clock.getElapsedTime();
-    const angle = time * speed + angleOffset;
-
-    ref.current.position.x = Math.cos(angle) * radius;
-    ref.current.position.z = Math.sin(angle) * radius;
-    ref.current.rotation.y = angle + Math.PI / 2; // face la caméra
-  });
-
-  return (
-    <mesh ref={ref} scale={size}>
-      <planeGeometry args={[1.1, 1.1]} />
-      <meshBasicMaterial
-        map={new THREE.TextureLoader().load(url)}
-        transparent
-        side={THREE.DoubleSide}
-        toneMapped={false}
-      />
-    </mesh>
-  );
-}
-
-// ──────────────────────────────────────────────────────────────────────────────
-// Halo pulsant + particules d'énergie
-// ──────────────────────────────────────────────────────────────────────────────
-
-function EnergyHalo() {
-  const ref = useRef<THREE.Mesh>(null!);
-  const materialRef = useRef<THREE.MeshBasicMaterial>(null!);
-
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime();
-    if (ref.current) {
-      ref.current.scale.setScalar(1 + Math.sin(t * 1.8) * 0.08);
-    }
-    if (materialRef.current) {
-      materialRef.current.opacity = 0.35 + Math.sin(t * 2.2) * 0.12;
-    }
-  });
-
-  return (
-    <mesh ref={ref}>
-      <ringGeometry args={[ORBITS.outer.radius * 0.98, ORBITS.outer.radius * 1.02, 128]} />
-      <meshBasicMaterial
-        ref={materialRef}
-        color="#60a5fa"
-        transparent
-        opacity={0.4}
-        blending={THREE.AdditiveBlending}
-        side={THREE.DoubleSide}
-      />
-    </mesh>
-  );
-}
-
-// ──────────────────────────────────────────────────────────────────────────────
-// Scène principale 3D
-// ──────────────────────────────────────────────────────────────────────────────
-
-function Scene() {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const rotationX = useSpring(useTransform(mouseY, [-1, 1], [0.12, -0.12]));
-  const rotationY = useSpring(useTransform(mouseX, [-1, 1], [-0.18, 0.18]));
+export default function TechShowcaseFire() {
+  const topRef = useRef<HTMLDivElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleMove = (e: PointerEvent) => {
-      mouseX.set((e.clientX / window.innerWidth) * 2 - 1);
-      mouseY.set(-(e.clientY / window.innerHeight) * 2 + 1);
+    const top = topRef.current;
+    const bottom = bottomRef.current;
+    if (!top || !bottom) return;
+
+    // Clone pour scroll infini
+    const cloneChildren = (container: HTMLDivElement) => {
+      Array.from(container.children).forEach((child) => {
+        const clone = child.cloneNode(true) as HTMLElement;
+        container.appendChild(clone);
+      });
     };
-    window.addEventListener('pointermove', handleMove);
-    return () => window.removeEventListener('pointermove', handleMove);
-  }, [mouseX, mouseY]);
+
+    cloneChildren(top);
+    cloneChildren(bottom);
+  }, []);
 
   return (
-    <>
-      <ambientLight intensity={0.4} />
-      <pointLight position={[10, 10, 10]} intensity={1.8} color="#a5b4fc" />
-      <pointLight position={[-10, -8, -12]} intensity={0.9} color="#c084fc" />
+    <div className="relative w-full h-[80vh] md:h-screen overflow-hidden flex items-center justify-center bg-gradient-to-br from-indigo-950 via-purple-950 to-fuchsia-950">
+      {/* Fond animé subtil */}
+      <div className="absolute inset-0 opacity-30 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(236,72,153,0.15),transparent_40%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(99,102,241,0.12),transparent_50%)]" />
+      </div>
 
-      <Stars radius={100} depth={50} count={4000} factor={4} saturation={0} fade speed={0.6} />
+      {/* Carte centrale avec bordure de feu lumineuse */}
+      <div className="relative z-20 max-w-lg md:max-w-3xl p-8 md:p-12 lg:p-16 rounded-3xl text-center text-white backdrop-blur-xl bg-black/40 border-2 border-transparent shadow-2xl shadow-pink-900/40 overflow-hidden group">
+        {/* Effet feu lumineux autour de la carte */}
+        <div className="absolute inset-[-2px] rounded-3xl pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-700">
+          <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 animate-fire-border" />
+          <div className="absolute inset-[3px] rounded-3xl bg-black/90" />
+        </div>
 
-      {/* Logo central pulsant */}
-      <mesh scale={1.8}>
-        <sphereGeometry args={[1.15, 32, 32]} />
-        <meshStandardMaterial
-          color="#1e40af"
-          emissive="#60a5fa"
-          emissiveIntensity={0.7}
-          roughness={0.4}
-          metalness={0.3}
-        />
-        <mesh scale={1.4}>
-          <sphereGeometry args={[1, 32, 32]} />
-          <meshBasicMaterial
-            map={new THREE.TextureLoader().load(LOGOS.center)}
-            transparent
-            opacity={0.9}
-            blending={THREE.AdditiveBlending}
-          />
-        </mesh>
-      </mesh>
-
-      {/* Orbites */}
-      {Object.entries(ORBITS).map(([key, config]) => {
-        const logos = LOGOS[key as keyof typeof LOGOS];
-        if (!Array.isArray(logos)) return null;
-
-        return logos.map((url, i) => {
-          const angleOffset = (i / logos.length) * Math.PI * 2;
-          return (
-            <OrbitingLogo
-              key={`${key}-${i}`}
-              url={url}
-              radius={config.radius}
-              angleOffset={angleOffset}
-              speed={config.speed}
-              size={config.logoSize}
-            />
-          );
-        });
-      })}
-
-      <EnergyHalo />
-    </>
-  );
-}
-
-// ──────────────────────────────────────────────────────────────────────────────
-// Composant principal
-// ──────────────────────────────────────────────────────────────────────────────
-
-export default function TechOrbitScene() {
-  return (
-    <Suspense fallback={<div className="h-[80vh] flex items-center justify-center">
-      <div className="animate-spin h-12 w-12 border-4 border-blue-500 rounded-full border-t-transparent"></div>
-    </div>}>
-      <div className="relative w-full h-screen bg-gradient-to-b from-[#0a001f] via-[#0f002f] to-[#0a001f] overflow-hidden">
-        {/* Canvas Three.js */}
-        <Canvas
-          camera={{ position: [0, 0, 18], fov: 50 }}
-          style={{ position: 'absolute', inset: 0 }}
-          gl={{ antialias: true, alpha: false }}
-        >
-          <Scene />
-          <OrbitControls enableZoom={false} enablePan={false} rotateSpeed={0.4} autoRotate autoRotateSpeed={0.6} />
-        </Canvas>
-
-        {/* Overlay texte (optionnel) */}
-        <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.4, delay: 0.8 }}
-            className="text-center text-white px-6"
-          >
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-purple-300 to-pink-300">
-              Écosystème Full-Stack
-            </h1>
-            <p className="mt-4 text-xl md:text-2xl text-gray-300/80 max-w-2xl mx-auto">
-              Technologies modernes – maîtrisées et connectées
-            </p>
-          </motion.div>
+        {/* Contenu de la carte */}
+        <div className="relative z-10">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight bg-gradient-to-r from-pink-300 via-purple-300 to-cyan-300 bg-clip-text text-transparent drop-shadow-lg">
+            Écosystème Web Moderne
+          </h2>
+          <p className="text-lg md:text-xl lg:text-2xl text-gray-200/90 max-w-3xl mx-auto leading-relaxed">
+            React • Next.js • TypeScript • Tailwind • Svelte • Node • GraphQL • Vercel • Supabase • Vite...
+          </p>
         </div>
       </div>
-    </Suspense>
+
+      {/* Bandes de logos qui défilent derrière */}
+      <div className="absolute inset-0 z-10 flex flex-col justify-center gap-20 md:gap-28 lg:gap-36 opacity-60 pointer-events-none">
+        {/* Ligne du haut → vers la droite */}
+        <div
+          ref={topRef}
+          className="flex whitespace-nowrap animate-scroll-right"
+          style={{ animationDuration: '65s' }}
+        >
+          {duplicatedLogos.map((src, i) => (
+            <div
+              key={`top-${i}`}
+              className="mx-8 md:mx-12 lg:mx-16 flex-shrink-0"
+            >
+              <img
+                src={src}
+                alt=""
+                className="w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-2xl border border-white/10 shadow-xl shadow-black/40 transform transition-all duration-500 hover:scale-110 hover:rotate-6 hover:shadow-2xl hover:shadow-purple-500/40"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Ligne du bas → vers la gauche */}
+        <div
+          ref={bottomRef}
+          className="flex whitespace-nowrap animate-scroll-left"
+          style={{ animationDuration: '80s' }}
+        >
+          {duplicatedLogos.map((src, i) => (
+            <div
+              key={`bottom-${i}`}
+              className="mx-8 md:mx-12 lg:mx-16 flex-shrink-0"
+            >
+              <img
+                src={src}
+                alt=""
+                className="w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-2xl border border-white/10 shadow-xl shadow-black/40 transform transition-all duration-500 hover:scale-110 hover:-rotate-6 hover:shadow-2xl hover:shadow-pink-500/40"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
