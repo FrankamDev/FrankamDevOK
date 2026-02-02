@@ -186,7 +186,7 @@ export default function Member() {
                 className="mb-6"
               >
                 <img
-                  src="/banner.jpg"
+                  src="./banner.jpg"
                   alt="FrankamDev"
                   className="w-24 h-24 rounded-full border-4 border-emerald-500/50 shadow-2xl"
                 />

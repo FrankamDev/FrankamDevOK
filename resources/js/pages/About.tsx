@@ -4,7 +4,7 @@ const About = () => {
   return (
     <div>
       <SignatureCard
-        fullName="Frank MbaFrank Kamgang"
+        fullName="Frank Kamgang"
         mainRole="Architecte Du Web & Graphiste"
         avatarUrl="/me.png"
         tagline="Créer des expériences d'apprentissage qui marquent durablement."

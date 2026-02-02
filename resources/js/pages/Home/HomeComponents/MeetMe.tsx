@@ -53,7 +53,7 @@ const MeetMe = () => {
               className="rounded-2xl overflow-hidden shadow-2xl shadow-black/40 border border-white/5 relative group"
             >
               <img
-                src="./img.jpg" // ← Mets ta vraie photo ici
+                src="./me.png" // ← Mets ta vraie photo ici
                 alt="Frank - ton formateur"
                 className="w-full h-[380px] md:h-[420px] lg:h-[480px] object-cover transition-transform duration-700 group-hover:scale-105"
               />
