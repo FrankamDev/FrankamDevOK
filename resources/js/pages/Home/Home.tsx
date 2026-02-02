@@ -155,7 +155,7 @@ export default function Home() {
           <AnotherQuestion />
         </motion.section>
 
-        {/* <CercleRotate /> */}
+        <CercleRotate />
 
 
         <Member />
