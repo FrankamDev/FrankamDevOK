@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 const quotes = [
   {
     text: "Le code est comme l'humour. Quand il faut l'expliquer, c'est raté.",
-    author: "Cory House"
+    author: "Bokou Laurenne Grace"
   },
   {
     text: "D'abord, résous le problème. Ensuite, écris le code.",
