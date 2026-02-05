@@ -1,139 +1,396 @@
-import { Link, usePage } from "@inertiajs/react";
-import { motion } from "framer-motion";
-import { FaArrowRight } from "react-icons/fa6";
-import StarBackground from "@/components/StarBackground";
+// import { ArrowRight, ChevronDown, Play, Sparkles } from "lucide-react";
+// import { useEffect, useState } from "react";
+// import SyntaxHighlighter from "react-syntax-highlighter";
+// import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/hljs";
+// import { codeExamples, floatingCards } from "../../../data/CodeExamples";
+// import Particles from "../components/bg";
 
+// export default function Hero() {
+//   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+//   const [activeTab, setActiveTab] = useState("App.tsx");
 
+//   useEffect(() => {
+//     function handleMouseMove(e) {
+//       setMousePosition({ x: e.clientX, y: e.clientY });
+//     }
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-};
+//     window.addEventListener("mousemove", handleMouseMove);
 
-export default function Hero() {
-  const poppins = { fontFamily: "'Poppins', sans-serif" };
-  const inter = { fontFamily: "'Inter', sans-serif" };
+//     return () => window.removeEventListener("mousemove", handleMouseMove);
+//   }, []);
 
-  return (
+//   // Gestion sécurisée de la carte flottante
+//   const currentFloatingCard = floatingCards[activeTab] || {
+//     bgColor: "bg-gray-900/80",
+//     iconColor: "bg-blue-600 text-white",
+//     textColor: "text-white",
+//     contentColor: "text-gray-300",
+//     title: "Information",
+//     content: "Cette fonctionnalité n'a pas de carte associée",
+//     icon: "?",
+//   };
 
-    <div className="relative h-screen overflow-hidden bg-[#030313]">
-
-
-      <motion.section
-        variants={sectionVariants}
-        initial="hidden"
-        animate="visible"
-        className="relative mt-14 flex flex-col items-center justify-center min-h-screen px-5 pt-24 pb-12 text-center bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white overflow-hidden"
-      >
-        {/* Glow en arrière-plan */} <div className="absolute -top-40 -left-40 w-[400px] h-[400px] bg-green-500/20 rounded-full blur-3xl animate-pulse"></div> <div className="absolute -bottom-40 -right-40 w-[400px] h-[400px] bg-yellow-400/20 rounded-full blur-3xl animate-pulse"></div>
-        {/* Titre principal */}
-        <h1
-          style={poppins}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight max-w-5xl mb-6"
-        >
-          Partez de{" "}
-          <span className="text-yellow-300 inline-block mt-2 sm:mt-0">
-            Je veux apprendre
-          </span>
-          <br className="sm:hidden" /> à {" "}
-          <span className="text-green-400 inline-block mt-2 sm:mt-0">
-            j'ai réalisé ça <i className="text-white not-italic">!!</i>
-          </span>
-        </h1>
-
-        <StarBackground />
-        {/* Sous-titre */}
-        <p
-          style={inter}
-          className="mt-3 sm:mt-5 text-gray-300 text-base sm:text-lg md:text-xl max-w-2xl px-2"
-        >
-          🚀 Arrêtez de consommer. Commencez à créer. Construisez des projets réels et montez en niveau comme jamais.
-        </p>
-
-        {/* CTA */}
-        <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row gap-4 sm:gap-6">
-          <Link href='/formation'
-            prefetch
-            className="px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-cyan-400 to-green-600 rounded font-semibold text-lg shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2">
-            Découvrir les cours
-            <FaArrowRight />
-          </Link>
-          <Link
-            prefetch
-            className="px-6 py-3 sm:px-8 sm:py-4 bg-gray-800 rounded font-semibold text-lg border border-gray-700 hover:bg-gray-700 transition-all">
-            En savoir plus
-          </Link>
-        </div>
-
-
-        {/* Progression */}
-        <div className="mt-14 sm:mt-20 w-full max-w-xl px-2 sm:px-4">
-          <p
-            style={inter}
-            className="text-sm sm:text-base text-gray-400 mb-3 font-medium"
-          >
-            🔥 Plus de 75% de progression moyenne chez nos apprenants
-          </p>
-          <div className="w-full bg-gray-800 rounded-full h-2.5 sm:h-3.5 shadow-inner">
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "75%" }}
-              transition={{ duration: 1.2, ease: "easeOut" }}
-              className="h-full rounded-full"
-              style={{
-                background: "linear-gradient(90deg, #3EAEFF 0%, #2563EB 100%)",
-                boxShadow: "0 0 12px rgba(62, 174, 255, 0.7)",
-              }}
-            ></motion.div>
-          </div>
-        </div>
-      </motion.section >
-
-
-    </div>
-  );
-}
-
-
-// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-// import { Progress } from "@/components/ui/progress"
-// import { Button } from "@/components/ui/button"
-// import { Badge } from "@/components/ui/badge"
-
-// const courses = [
-//   { id: 1, title: "React pour débutants", progress: 60, status: "En cours" },
-//   { id: 2, title: "Laravel avancé", progress: 100, status: "Terminé" },
-//   { id: 3, title: "Design avec TailwindCSS", progress: 25, status: "Nouveau" },
-// ]
-
-// export default function CoursesPage() {
 //   return (
-//     <div className="max-w-4xl mx-auto p-6 space-y-6">
-//       <h1 className="text-2xl font-bold">📚 Mes Cours</h1>
+//     <>
+//       {/* Fond Particles – bien en arrière-plan, full viewport */}
 
-//       <div className="grid md:grid-cols-2 gap-6">
-//         {courses.map((course) => (
-//           <Card key={course.id} className="shadow-md">
-//             <CardHeader>
-//               <CardTitle className="flex justify-between items-center">
-//                 {course.title}
-//                 <Badge>{course.status}</Badge>
-//               </CardTitle>
-//             </CardHeader>
-//             <CardContent className="space-y-4">
-//               <Progress value={course.progress} className="h-2" />
-//               <div className="flex justify-between items-center">
-//                 <span className="text-sm text-muted-foreground">
-//                   Progression : {course.progress}%
+
+//       {/* Contenu principal */}
+//       <section className="relative min-h-screen flex items-center justify-center pt-16 sm:pt-20 px-4 sm:px-6 lg:px-8 overflow-hidden z-10 bg-black/30">
+//         {/* Effet radial suivant la souris */}
+//         <div
+//           className="absolute inset-0 pointer-events-none opacity-35 z-0"
+//           style={{
+//             background: `radial-gradient(650px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(59, 130, 246, 0.18), transparent 45%)`,
+//           }}
+//         />
+
+//         {/* Orbes décoratifs */}
+//         <div className="absolute top-20 left-4 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse z-0" />
+//         <div className="absolute bottom-20 right-4 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000 z-0" />
+
+//         <div className="max-w-7xl mx-auto text-center relative w-full z-10">
+//           <div className="max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-2 text-center lg:text-left gap-6 sm:gap-8 lg:gap-12 items-center relative">
+//             {/* Colonne de gauche – texte */}
+//             <div>
+//               <div className="inline-flex items-center space-x-2 px-3 sm:px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full mb-4 sm:mb-6 animate-in slide-in-from-bottom duration-700">
+//                 <Sparkles className="w-4 h-4 text-blue-400" />
+//                 <span className="text-xs sm:text-sm text-blue-300">
+//                   Introducing CodeFlow AI
 //                 </span>
-//                 <Button variant="outline">Continuer</Button>
 //               </div>
-//             </CardContent>
-//           </Card>
-//         ))}
-//       </div>
-//     </div>
-//   )
+
+//               <h1 className="text-5xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold mb-4 sm:mb-6 animate-in slide-in-from-bottom duration-700 delay-100 leading-tight">
+//                 <span className="bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent block mb-1 sm:mb-2">
+//                   Code Faster
+//                 </span>
+//                 <span className="bg-gradient-to-b from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent block mb-1 sm:mb-2">
+//                   Build Better
+//                 </span>
+//                 <span className="bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent block mb-1 sm:mb-2">
+//                   With CodeFlow AI
+//                 </span>
+//               </h1>
+
+//               <p className="text-md sm:text-base lg:text-lg text-gray-400 max-w-2xl mx-auto lg:mx-0 mb-6 sm:mb-8 animate-in slide-in-from-bottom duration-700 delay-200 leading-relaxed">
+//                 Accelerate your development workflow with intelligent code completion, automated testing, and smart debugging. Ship production-ready code 10x faster.
+//               </p>
+
+//               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-8 sm:mb-12 animate-in slide-in-from-bottom duration-700 delay-300">
+//                 <button className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-b from-blue-600 to-blue-400 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 hover:scale-102 flex items-center justify-center space-x-2">
+//                   <span>Start Coding Free</span>
+//                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" />
+//                 </button>
+
+//                 <button className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-white/10 flex items-center justify-center space-x-2">
+//                   <div className="p-2 bg-white/10 rounded-full group-hover:bg-white/20 duration-300 transition-colors">
+//                     <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-white" />
+//                   </div>
+//                   <span>FrankamDev</span>
+//                 </button>
+//               </div>
+//             </div>
+
+//             {/* Colonne de droite – carte code (exactement comme tu l’avais) */}
+//             <div className="relative order-2 w-full">
+//               <div className="relative bg-white/5 backdrop-blur-xl rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-2xl border border-white/10">
+//                 <div className="bg-gradient-to-br from-gray-900/20 to-gray-800/20 backdrop-blur-sm rounded-lg overflow-hidden h-[280px] sm:h-[350px] lg:h-[450px] border border-white/5">
+//                   {/* IDE HEADER */}
+//                   <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 bg-white/5 backdrop-blur-sm border-b border-white/10">
+//                     <div className="flex items-center space-x-2">
+//                       <div className="flex items-center space-x-1 sm:space-x-2">
+//                         <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500" />
+//                         <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500" />
+//                         <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500" />
+//                       </div>
+//                       <span className="text-xs sm:text-sm text-gray-300">
+//                         CodeFlow AI
+//                       </span>
+//                     </div>
+//                     <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
+//                   </div>
+
+//                   <div className="p-3 sm:p-4 relative h-full">
+//                     {/* file tabs */}
+//                     <div className="flex space-x-1 sm:space-x-2 mb-3 sm:mb-4 overflow-x-auto">
+//                       <button
+//                         onClick={() => setActiveTab("App.tsx")}
+//                         className={`px-3 py-2 backdrop-blur-sm text-xs sm:text-sm rounded-t-lg border ${activeTab === "App.tsx"
+//                           ? "bg-blue-500/30 text-white border-blue-400/20"
+//                           : "bg-white/5 text-gray-300 border-white/10 hover:bg-white/10"
+//                           } transition-all duration-200 whitespace-nowrap`}
+//                       >
+//                         App.tsx
+//                       </button>
+//                       <button
+//                         onClick={() => setActiveTab("Hero.tsx")}
+//                         className={`px-3 py-2 backdrop-blur-sm text-xs sm:text-sm rounded-t-lg border ${activeTab === "Hero.tsx"
+//                           ? "bg-blue-500/30 text-white border-blue-400/20"
+//                           : "bg-white/5 text-gray-300 border-white/10 hover:bg-white/10"
+//                           } transition-all duration-200 whitespace-nowrap`}
+//                       >
+//                         Acceuil.tsx
+//                       </button>
+//                       <button
+//                         onClick={() => setActiveTab("Navbar.tsx")}
+//                         className={`px-3 py-2 backdrop-blur-sm text-xs sm:text-sm rounded-t-lg border ${activeTab === "Navbar.tsx"
+//                           ? "bg-blue-500/30 text-white border-blue-400/20"
+//                           : "bg-white/5 text-gray-300 border-white/10 hover:bg-white/10"
+//                           } transition-all duration-200 whitespace-nowrap`}
+//                       >
+//                         Navbar.tsx
+//                       </button>
+//                     </div>
+
+//                     {/* Code Content */}
+//                     <div className="relative overflow-hidden flex-grow">
+//                       <SyntaxHighlighter
+//                         language="javascript"
+//                         style={nightOwl}
+//                         customStyle={{
+//                           margin: 0,
+//                           borderRadius: "8px",
+//                           fontSize: "12px",
+//                           lineHeight: "1.4",
+//                           height: "100%",
+//                           border: "1px solid #3c3c3c",
+//                           wordWrap: "break-word",
+//                           whiteSpace: "pre-wrap",
+//                           textAlign: "left",
+//                         }}
+//                       >
+//                         {codeExamples[activeTab]}
+//                       </SyntaxHighlighter>
+//                     </div>
+//                   </div>
+//                 </div>
+
+//                 {/* Floating Cards */}
+//                 <div
+//                   className={`hidden lg:block absolute bottom-4 right-4 transform translate-x-8 translate-y-8 w-72 ${currentFloatingCard.bgColor} backdrop-blur-xl rounded-lg p-4 border border-white/20 shadow-2xl`}
+//                 >
+//                   <div className="flex items-center space-x-2 mb-2">
+//                     <div
+//                       className={`w-6 h-6 ${currentFloatingCard.iconColor} flex items-center justify-center text-sm font-bold`}
+//                     >
+//                       {currentFloatingCard.icon}
+//                     </div>
+//                     <span
+//                       className={`text-sm font-medium ${currentFloatingCard.textColor}`}
+//                     >
+//                       {currentFloatingCard.title}
+//                     </span>
+//                   </div>
+
+//                   <div
+//                     className={`text-sm text-left ${currentFloatingCard.contentColor}`}
+//                   >
+//                     {currentFloatingCard.content}
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+//     </>
+//   );
 // }
 
+
+
+
+import { ArrowRight, ChevronDown, Play, Sparkles } from "lucide-react";
+import { useEffect, useState } from "react";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { nightOwl } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { codeExamples, floatingCards } from "../../../data/CodeExamples";
+import Particles from "../components/bg";
+
+export default function Hero() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [activeTab, setActiveTab] = useState("App.tsx");
+
+  useEffect(() => {
+    function handleMouseMove(e) {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    }
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  const currentFloatingCard = floatingCards[activeTab] || {};
+  return (
+    <>
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <Particles
+
+          particleColors={["#ffffff", "#60a5fa", "#38bdf8", "#a5b4fc"]}
+          particleCount={600}
+          particleSpread={25}
+          speed={0.08}
+          particleBaseSize={90}
+          moveParticlesOnHover={true}
+          alphaParticles={true}
+          disableRotation={false}
+          pixelRatio={window.devicePixelRatio || 1}
+        />
+      </div>
+      <section className="relative min-h-screen flex items-center justify-center pt-16 sm:pt-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-30"
+          style={{
+            background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(59, 130, 246, 0.15), transparent 40%)`,
+          }}
+        />
+
+        <div className="absolute top-20 left-4 sm:left-10 w-48 sm:w-72 h-48 sm:h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-4 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+
+        <div className="max-w-7xl mx-auto text-center relative w-full">
+          <div className="max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-2 text-center lg:text-left gap-6 sm:gap-8 lg:gap-12 items-center relative">
+            <div>
+              <div className="inline-flex items-center space-x-2 px-3 sm:px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full mb-4 sm:mb-6 animate-in slide-in-from-bottom duration-700">
+                <Sparkles className="w-4 h-4 text-blue-400" />
+                <span className="text-xs sm:text-sm text-blue-300">
+                  Apprendre à coder facilement
+                </span>
+              </div>
+
+              <h1 className="text-5xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold mb-4 sm:mb-6 animate-in slide-in-from-bottom duration-700 delay-100 leading-tight">
+                <span className="bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent block mb-1 sm:mb-2">
+                  Partez de <span className="text-green-300">j'veux apprendre à</span>
+                </span>
+                <span className="bg-gradient-to-b from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent block mb-1 sm:mb-2">
+                  j'ai réalisé ça !
+                </span>
+                <span className="bg-gradient-to-r from-white via-blue-100 to-cyan-100 bg-clip-text text-transparent block mb-1 sm:mb-2">
+
+                </span>
+              </h1>
+
+              <p className="text-md sm:text-base lg:text-lg text-gray-400 max-w-2xl mx-auto lg:mx-0 mb-6 sm:mb-8 animate-in slide-in-from-bottom duration-700 delay-200 leading-relaxed">
+                Accélérez votre flux de développement grâce à la saisie semi-automatique intelligente, aux tests automatisés et au débogage intelligent. Déployez du code prêt pour la production 10 fois plus rapidement.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-8 sm:mb-12 animate-in slide-in-from-bottom duration-700 delay-300">
+                <button className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-b from-blue-600 to-blue-400 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 hover:scale-102 flex items-center justify-center space-x-2">
+                  <span>Commencez à Apprendre</span>
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </button>
+
+                <button className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-white/10 flex items-center justify-center space-x-2">
+                  <div className="p-2 bg-white/10 rounded-full group-hover:bg-white/20 duration-300 transition-colors">
+                    <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-white" />
+                  </div>
+                  <span>Ici La Demo</span>
+                </button>
+              </div>
+            </div>
+            <div className="relative order-2 w-full">
+              <div className="relative bg-white/5 backdrop-blur-xl rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-2xl border border-white/10">
+                <div className="bg-gradient-to-br from-gray-900/20 to-gray-800/20 backdrop-blur-sm rounded-lg overflow-hidden h-[280px] sm:h-[350px] lg:h-[450px] border border-white/5">
+                  {/* IDE HEADER */}
+                  <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 bg-white/5 backdrop-blur-sm border-b border-white/10">
+                    <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-1 sm:space-x-2">
+                        <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-500" />
+                        <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500" />
+                        <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500" />
+                      </div>
+                      <span className="text-xs sm:text-sm text-gray-300">
+                        Frankam<span className="text-cyan-200">Dev</span>
+                      </span>
+                    </div>
+                    <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400" />
+                  </div>
+
+                  <div className="p-3 sm:p-4 relative h-full">
+                    {/* file tabs */}
+                    <div className="flex space-x-1 sm:space-x-2 mb-3 sm:mb-4 overflow-x-auto">
+                      <button
+                        onClick={() => setActiveTab("App.tsx")}
+                        className={`px-3 py-2 backdrop-blur-sm tex-xs sm:text-sm rounded-t-lg border ${activeTab === "App.tsx"
+                          ? "bg-blue-500/30 text-white border-blue-400/20"
+                          : "bg-white/5 text-gray-300 border-white/10 hover:bg-white/10"
+                          }  transition-all duration-200 whitespace-nowrap`}
+                      >
+                        App.tsx
+                      </button>
+                      <button
+                        onClick={() => setActiveTab("Acceuil.tsx")}
+                        className={`px-3 py-2 backdrop-blur-sm tex-xs sm:text-sm rounded-t-lg border ${activeTab === "Acceuil.tsx"
+                          ? "bg-blue-500/30 text-white border-blue-400/20"
+                          : "bg-white/5 text-gray-300 border-white/10 hover:bg-white/10"
+                          }  transition-all duration-200 whitespace-nowrap`}
+                      >
+                        Acceuil.tsx
+                      </button>
+                      <button
+                        onClick={() => setActiveTab("Navbar.tsx")}
+                        className={`px-3 py-2 backdrop-blur-sm tex-xs sm:text-sm rounded-t-lg border ${activeTab === "Navbar.tsx"
+                          ? "bg-blue-500/30 text-white border-blue-400/20"
+                          : "bg-white/5 text-gray-300 border-white/10 hover:bg-white/10"
+                          }  transition-all duration-200 whitespace-nowrap`}
+                      >
+                        Navbar.tsx
+                      </button>
+                    </div>
+
+                    {/* Code Content */}
+                    <div className="relative overflow-hidden flex-grow">
+                      <SyntaxHighlighter
+                        language="javascript"
+                        style={nightOwl}
+                        customStyle={{
+                          margin: 0,
+                          borderRadius: "8px",
+                          fontSize: "12px",
+                          lineHeight: "1.4",
+                          height: "100%",
+                          border: "1px solid #3c3c3c",
+                          wordWrap: "break-word",
+                          whiteSpace: "pre-wrap",
+                          textAlign: "left",
+                        }}
+                      >
+                        {codeExamples[activeTab]}
+                      </SyntaxHighlighter>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Floating Cards */}
+                <div
+                  className={`hidden lg:block absolute bottom-4 right-4 transform translate-x-8 translate-y-8 w-72 ${currentFloatingCard.bgColor} backdrop-blur-xl rounded-lg p-4 border border-white/20 shadow-2xl`}
+                >
+                  <div className="flex items-center space-x-2 mb-2">
+                    <div
+                      className={`w-6 h-6 ${currentFloatingCard.iconColor} flex items-center justify-center text-sm font-bold`}
+                    >
+                      {currentFloatingCard.icon}
+                    </div>
+                    <span
+                      className={`text-sm font-medium ${currentFloatingCard.textColor}`}
+                    >
+                      {currentFloatingCard.title}
+                    </span>
+                  </div>
+
+                  <div
+                    className={`text-sm text-left ${currentFloatingCard.contentColor}`}
+                  >
+                    {currentFloatingCard.content}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
 

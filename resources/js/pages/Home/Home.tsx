@@ -7,16 +7,20 @@ import Member from '@/components/Member';
 
 import Footer from '../../components/Footer';
 import NavBar from '../../components/NavBar';
+import Navbar from '../../components/NavBar';
 import Test from '../../components/Test';
 import AnotherQuestion from './HomeComponents/AnotherQuestion';
 import CardBuild from './HomeComponents/CardBuild';
 import CardTestimanial from './HomeComponents/CardTestimanial';
 import CercleRotate from './HomeComponents/CercleRotate';
 import Compagnies from './HomeComponents/Compagnies';
+import Features from './HomeComponents/Features';
 import Hero from './HomeComponents/Hero';
 import MeetMe from './HomeComponents/MeetMe';
+import Price from './HomeComponents/Price'
 import Questions from './HomeComponents/Questions';
 import Quotes from './HomeComponents/Quotes';
+import Testimonials from './HomeComponents/Testimonial';
 
 
 const sectionVariants = {
@@ -65,13 +69,14 @@ export default function Home() {
           theme="dark"
           className="text-sm sm:text-base"
         />
-        <NavBar />
+        <Navbar />
 
         <Hero />
-
+        <Features />
+        <Price />
         {/* Témoignages */}
         <section className="">
-          {/* <Testimonial /> */}
+          <Testimonials />
         </section>
 
         {/* Partenaires */}
@@ -130,10 +135,10 @@ export default function Home() {
           animate="visible"
           className="mt-12 bg-[#020013] px-4 py-12 sm:mt-16 sm:px-6 sm:py-16 md:px-12"
         >
-          <CardTestimanial />
+          {/* <CardTestimanial /> */}
+          <Testimonials />
           <Quotes />
         </motion.section>
-
         <motion.section
           variants={sectionVariants}
           initial="hidden"

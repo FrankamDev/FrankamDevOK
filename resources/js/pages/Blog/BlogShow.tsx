@@ -797,7 +797,7 @@ export default function BlogShow() {
 
                 <div className="mt-5 flex flex-wrap gap-3 text-xs sm:text-sm md:text-base">
                   <span className="px-3 py-1.5 md:px-4 md:py-2 bg-indigo-700/80 backdrop-blur-sm rounded-full text-white font-medium">
-                    {post.reading_time || "—"} min
+                    {post.reading_time || "—"} min de lecture
                   </span>
                   <span className="px-3 py-1.5 md:px-4 md:py-2 bg-slate-800/70 backdrop-blur-sm rounded-full text-slate-200">
                     {new Date(post.created_at).toLocaleDateString("fr-FR", {
