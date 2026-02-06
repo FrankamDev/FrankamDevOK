@@ -1622,6 +1622,7 @@ namespace App\Models {
   /**
    * App\Models\User
    *
+   * @property bool $is_system
    * @property string|null $avatar
    * @property \Illuminate\Support\Carbon|null $updated_at
    * @property \Illuminate\Support\Carbon|null $created_at
@@ -1639,6 +1640,10 @@ namespace App\Models {
    * @property int $id
    * @property-read \Illuminate\Database\Eloquent\Collection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
    * @property-read int|null $notifications_count
+   * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Role> $roles
+   * @property-read int|null $roles_count
+   * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Permission> $permissions
+   * @property-read int|null $permissions_count
    * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereId($value)
    * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereName($value)
    * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereGoogleId($value)
@@ -1654,9 +1659,14 @@ namespace App\Models {
    * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereCreatedAt($value)
    * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereUpdatedAt($value)
    * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereAvatar($value)
+   * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereIsSystem($value)
    * @method static \Illuminate\Database\Eloquent\Builder<User>|User newModelQuery()
    * @method static \Illuminate\Database\Eloquent\Builder<User>|User newQuery()
    * @method static \Illuminate\Database\Eloquent\Builder<User>|User query()
+   * @method static \Illuminate\Database\Eloquent\Builder<User>|User role(mixed $roles, mixed $guard = null, mixed $without = false) {@see App\Models\User::scopeRole()}
+   * @method static \Illuminate\Database\Eloquent\Builder<User>|User withoutRole(mixed $roles, mixed $guard = null) {@see App\Models\User::scopeWithoutRole()}
+   * @method static \Illuminate\Database\Eloquent\Builder<User>|User permission(mixed $permissions, mixed $without = false) {@see App\Models\User::scopePermission()}
+   * @method static \Illuminate\Database\Eloquent\Builder<User>|User withoutPermission(mixed $permissions) {@see App\Models\User::scopeWithoutPermission()}
    * @method static mixed select($columns)
    * @method static mixed selectSub($query, $as)
    * @method static mixed selectExpression($expression, $as)

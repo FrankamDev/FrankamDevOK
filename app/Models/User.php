@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -17,7 +18,9 @@ class User extends Authenticatable
    * The attributes that are mass assignable.
    *
    * @var list<string>
+
    */
+  use HasRoles;
   protected $fillable = [
     'name',
     'email',
@@ -26,6 +29,7 @@ class User extends Authenticatable
     'google_refresh_token',
     'google_id',
     'google_token',
+    'is_system'
   ];
 
   /**
@@ -52,5 +56,14 @@ class User extends Authenticatable
       'password' => 'hashed',
       'two_factor_confirmed_at' => 'datetime',
     ];
+  }
+
+  public static function booted()
+  {
+    static::deleting(function ($user) {
+      if ($user->is_system) {
+        throw new \Exception("Impossible de supprimer ce super-admin système !");
+      }
+    });
   }
 }

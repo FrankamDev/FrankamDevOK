@@ -93,6 +93,7 @@
 
 
 import { Link } from '@inertiajs/react';
+import { motion } from 'framer-motion';
 import {
   FaEnvelope,
   FaGithub,
@@ -103,13 +104,12 @@ import {
   FaHeart,
   FaArrowUp,
 } from 'react-icons/fa6';
-import { motion } from 'framer-motion';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative w-full overflow-hidden bg-gradient-to-b from-[#0a0c1f] via-[#0b0e25] to-[#050814] text-gray-300">
+    <footer className="relative w-full overflow-hidden bg-[#011627bc] text-gray-300">
       {/* Fond décoratif subtil */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(59,130,246,0.06),transparent_40%)]" />
