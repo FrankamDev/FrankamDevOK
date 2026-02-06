@@ -33,8 +33,9 @@ Route::get('/auth/redirect', function () {
   return redirect('/');
 });
 
-
-
+Route::get('/courses/{slug}', [CourseController::class, 'show'])->name('courses.show');
+Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+Route::get('/courses/{course:slug}', [CourseController::class, 'show'])->name('courses.show');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('/', [HomeController::class, 'index'])->name('home');

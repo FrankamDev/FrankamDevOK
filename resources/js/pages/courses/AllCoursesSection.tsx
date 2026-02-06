@@ -1,78 +1,18 @@
 // src/components/AllCoursesSection.tsx
+import { usePage } from '@inertiajs/react';
 import React from 'react';
 import { SiGraphql, SiJavascript, SiNextdotjs, SiNodedotjs, SiReact, SiTailwindcss, SiTypescript } from 'react-icons/si';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/NavBar';
 import CourseCard from './components/CourseCard';
 
-const courses = [
-  {
-    id: 1,
-    title: 'Maîtriser React & TypeScript',
-    level: 'Intermédiaire → Avancé',
-    duration: '28 heures',
-    lessons: 84,
-    image: '/images/react-course.jpg',
-    tags: ['React', 'TypeScript', 'Frontend'],
-  },
-  {
-    id: 2,
-    title: 'Node.js & Express - API REST modernes',
-    level: 'Débutant → Avancé',
-    duration: '32 heures',
-    lessons: 96,
-    image: '/images/node-course.jpg',
-    tags: ['Node.js', 'Express', 'Backend'],
-  },
-  {
-    id: 3,
-    title: 'Next.js 14 & App Router en profondeur',
-    level: 'Intermédiaire',
-    duration: '24 heures',
-    lessons: 68,
-    image: '/images/nextjs-course.jpg',
-    tags: ['Next.js', 'SSR', 'SEO'],
-  },
-  {
-    id: 4,
-    title: 'Tailwind CSS + Design Systems',
-    level: 'Tous niveaux',
-    duration: '18 heures',
-    lessons: 52,
-    image: '/images/tailwind-course.jpg',
-    tags: ['Tailwind', 'UI/UX', 'Design'],
-  },
-  {
-    id: 5,
-    title: 'GraphQL avec Apollo & Prisma',
-    level: 'Intermédiaire → Avancé',
-    duration: '22 heures',
-    lessons: 64,
-    image: '/images/graphql-course.jpg',
-    tags: ['GraphQL', 'Apollo', 'Backend'],
-  },
-  {
-    id: 6,
-    title: 'Développement Mobile avec React Native',
-    level: 'Débutant → Intermédiaire',
-    duration: '26 heures',
-    lessons: 78,
-    image: '/images/react-native-course.jpg',
-    tags: ['React Native', 'Mobile', 'Cross-Platform'],
-  },
-  {
-    id: 7,
-    title: 'Sécurité Web & DevOps',
-    level: 'Avancé',
-    duration: '30 heures',
-    lessons: 90,
-    image: '/images/security-course.jpg',
-    tags: ['Sécurité', 'DevOps', 'Infrastructure'],
-  },
-  // Ajoute autant de cours que tu veux...
-];
+
 
 export default function AllCoursesSection() {
+  const { courses } = usePage().props;
+  // const courses = [1, 2, 1, 2, 1, 2, 1];
+  console.log(courses);
+
   return (
     <>
       <section className="relative min-h-screen bg-gradient-to-b from-gray-950 via-gray-950 to-gray-900 px-4 sm:px-6 md:px-8 lg:px-10 pb-24 pt-8 md:pt-16 overflow-hidden">
@@ -136,6 +76,7 @@ export default function AllCoursesSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6 md:gap-8 px-4 sm:px-0">
           {courses.map((course) => (
             <CourseCard key={course.id} {...course} />
+
           ))}
         </div>
 
@@ -150,3 +91,9 @@ export default function AllCoursesSection() {
     </>
   );
 }
+
+
+
+
+
+
