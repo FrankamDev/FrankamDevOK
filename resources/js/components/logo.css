@@ -1,0 +1,48 @@
+
+
+.app-logo-icon {
+  width: 64px; /* ou la taille que tu veux */
+  height: 64px;
+}
+
+/* Animation globale du logo */
+.app-logo-icon:hover .book,
+.app-logo-icon:focus .book {
+  animation: subtle-float 3.2s ease-in-out infinite;
+}
+
+.app-logo-icon .arrow {
+  animation: rise-and-pulse 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.app-logo-icon .glow-ring {
+  animation: slow-glow 6s ease-in-out infinite;
+}
+
+/* Keyframes */
+@keyframes subtle-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+
+@keyframes rise-and-pulse {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.92;
+  }
+  50% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+@keyframes slow-glow {
+  0%, 100% {
+    stroke-dashoffset: 0;
+    opacity: 0.35;
+  }
+  50% {
+    stroke-dashoffset: -60;
+    opacity: 0.7;
+  }
+}

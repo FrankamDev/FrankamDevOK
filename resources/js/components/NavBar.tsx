@@ -36,7 +36,7 @@ export default function Navbar({ scrolled }: Props) {
     setProfileOpen(false);
   };
   const { auth } = usePage().props;
-  console.log(auth);
+
 
   return (
     <nav
@@ -79,7 +79,7 @@ export default function Navbar({ scrolled }: Props) {
                     <img
                       src={auth.user.avatar ? `/storage/${auth.user.avatar}` : '/default-avatar.png'}
                       alt="avatar"
-                      className="w-10 h-10 rounded-full"
+                      className="w-20 h-10 rounded-full"
                     />
                   </div>
                   <span className="font-medium text-gray-200 hidden lg:inline">
