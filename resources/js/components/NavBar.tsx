@@ -62,10 +62,10 @@ export default function Navbar({ scrolled }: Props) {
           {/* Navigation DESKTOP – bien visible */}
           <div className="hidden md:flex items-center space-x-10 lg:space-x-12">
             {/* Liens publics */}
-            <NavLink href="#features">Fonctionnalités</NavLink>
-            <NavLink href="#pricing">Tarifs</NavLink>
-            <NavLink href="#testimonials">Avis</NavLink>
-            <NavLink href="/blog">Blog</NavLink>
+            <Link prefetch href="/">Acceuil</Link>
+            {/* <NavLink href="#pricing">Tarifs</NavLink> */}
+            {/* <NavLink href="/testimonials">Avis</NavLink> */}
+            <Link prefetch href="/blog">Blog</Link>
 
             {/* Espace authentification */}
             {isAuthenticated ? (
@@ -171,16 +171,14 @@ export default function Navbar({ scrolled }: Props) {
               </div>
 
               <div className="flex-1 overflow-y-auto py-8 px-6 space-y-2">
-                <MobileLink href="#features" onClick={handleCloseMenus}>
-                  Fonctionnalités
-                </MobileLink>
-                <MobileLink href="#pricing" onClick={handleCloseMenus}>
-                  Tarifs
-                </MobileLink>
+                <Link prefetch href="/">
+                  Acceuil
+                </Link>
+
                 <MobileLink href="#testimonials" onClick={handleCloseMenus}>
                   Avis
                 </MobileLink>
-                <MobileLink href="#faq" onClick={handleCloseMenus}>
+                <MobileLink href="/blog" onClick={handleCloseMenus}>
                   Blog
                 </MobileLink>
 
