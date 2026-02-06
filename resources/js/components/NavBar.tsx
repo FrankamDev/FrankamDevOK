@@ -35,6 +35,8 @@ export default function Navbar({ scrolled }: Props) {
     setMobileMenuIsOpen(false);
     setProfileOpen(false);
   };
+  const { auth } = usePage().props;
+  console.log(auth);
 
   return (
     <nav
@@ -73,7 +75,12 @@ export default function Navbar({ scrolled }: Props) {
                   className="flex items-center gap-2.5 px-4 py-2 rounded-lg hover:bg-slate-800/60 transition-colors duration-200"
                 >
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-medium">
-                    {user?.name?.[0]?.toUpperCase() || "?"}
+
+                    <img
+                      src={auth.user.avatar ? `/storage/${auth.user.avatar}` : '/default-avatar.png'}
+                      alt="avatar"
+                      className="w-10 h-10 rounded-full"
+                    />
                   </div>
                   <span className="font-medium text-gray-200 hidden lg:inline">
                     {user?.name?.split(" ")[0] || "Compte"}

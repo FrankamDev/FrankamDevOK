@@ -2,7 +2,7 @@ import { Head, Link, useForm } from '@inertiajs/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Eye, EyeOff, Upload, X } from 'lucide-react';
 import type { FormEvent } from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import DynamicQuote from '@/components/DynamicQuote';
 
 export default function Register() {
@@ -17,8 +17,6 @@ export default function Register() {
     password_confirmation: '',
     avatar: null as File | null,
   });
-
-  // Gérer l'aperçu de la photo (Logique déplacée dans les handlers pour éviter setState dans useEffect)
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
@@ -43,7 +41,6 @@ export default function Register() {
     e.preventDefault();
     clearErrors();
 
-    // Validation rapide côté client (optionnel, mais propre)
     if (data.password !== data.password_confirmation) {
       setError('password_confirmation', 'Les mots de passe ne correspondent pas');
       return;
@@ -110,11 +107,11 @@ export default function Register() {
                   className="text-5xl font-black text-cyan-400"
                   style={{
                     textShadow: `
-                                            0 0 20px rgba(52,211,153,0.3),
-                                            8px 8px 0 rgba(0,0,0,0.2),
-                                            -8px -8px 0 rgba(255,255,255,0.1),
-                                            0 20px 40px rgba(0,0,0,0.4)
-                                        `,
+                      0 0 20px rgba(52,211,153,0.3),
+                      8px 8px 0 rgba(0,0,0,0.2),
+                      -8px -8px 0 rgba(255,255,255,0.1),
+                      0 20px 40px rgba(0,0,0,0.4)
+                    `,
                     filter: 'drop-shadow(0 0 30px rgba(52,211,153,0.4))',
                   }}
                 >
@@ -122,13 +119,6 @@ export default function Register() {
                 </div>
               </motion.div>
             </div>
-
-            {/* <div>
-                            <p className="text-sm italic text-zinc-400">
-                                “Simplicity is an acquired taste.”
-                            </p>
-                            <p className="mt-1 text-xs text-zinc-500">Katharine Gerould</p>
-                        </div> */}
 
             <DynamicQuote />
           </motion.div>
@@ -149,10 +139,12 @@ export default function Register() {
               Créez votre compte :
             </h2>
 
-            {/* OAuth */}
+            {/* OAuth – maintenant avec <a> au lieu de <button> */}
             <div className="grid grid-cols-2 gap-3 mb-8">
-              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} type="button"
-                className="flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium text-white transition border rounded-xl border-white/10 bg-white/5 backdrop-blur-sm hover:border-cyan-500/50">
+              <a
+                href="/auth/redirect"
+                className="flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium text-white transition border rounded-xl border-white/10 bg-white/5 backdrop-blur-sm hover:border-cyan-500/50 hover:bg-white/10"
+              >
                 <svg className="w-5 h-5" viewBox="0 0 24 24">
                   <path
                     fill="#4285F4"
@@ -171,9 +163,12 @@ export default function Register() {
                   />
                 </svg>
                 Google
-              </motion.button>
-              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} type="button"
-                className="flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium text-white transition border rounded-xl border-white/10 bg-white/5 backdrop-blur-sm hover:border-cyan-500/50">
+              </a>
+
+              <a
+                href="/auth/github/redirect" // ← adapte l'URL selon ta route Laravel
+                className="flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium text-white transition border rounded-xl border-white/10 bg-white/5 backdrop-blur-sm hover:border-cyan-500/50 hover:bg-white/10"
+              >
                 <svg
                   className="w-5 h-5"
                   fill="currentColor"
@@ -182,7 +177,7 @@ export default function Register() {
                   <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.26.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                 </svg>
                 GitHub
-              </motion.button>
+              </a>
             </div>
 
             <div className="relative mb-8">
@@ -195,7 +190,6 @@ export default function Register() {
             </div>
 
             <form onSubmit={submit} className="space-y-6">
-
               {/* Nom */}
               <div>
                 <label className="block mb-2 text-sm font-medium text-zinc-300">Nom complet</label>
@@ -237,7 +231,7 @@ export default function Register() {
                 </AnimatePresence>
               </div>
 
-
+              {/* Mot de passe */}
               <div>
                 <label className="block mb-2 text-sm font-medium text-zinc-300">Mot de passe</label>
                 <div className="relative">
@@ -314,7 +308,7 @@ export default function Register() {
                 </motion.div>
               )}
 
-              {/* Bouton */}
+              {/* Bouton submit */}
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -322,15 +316,14 @@ export default function Register() {
                 disabled={processing}
                 className="flex items-center justify-center w-full gap-3 py-4 font-bold text-white transition-all shadow-lg rounded-[12px] bg-gradient-to-r from-cyan-500 to-teal-600 shadow-cyan-500/20 hover:shadow-cyan-500/30 disabled:opacity-50"
               >
+                
                 {processing ? 'Création en cours...' : 'Créer le compte'}
               </motion.button>
             </form>
 
             <div className="mt-8 text-xs text-center text-zinc-500">
               Déjà un compte ?{' '}
-              <Link
-                prefetch
-                href="/login" className="font-medium text-cyan-400 hover:text-cyan-300">
+              <Link prefetch href="/login" className="font-medium text-cyan-400 hover:text-cyan-300">
                 Connectez-vous
               </Link>
             </div>
@@ -344,9 +337,6 @@ export default function Register() {
     </>
   );
 }
-
-
-
 
 
 

@@ -17,6 +17,22 @@ class CreateNewUser implements CreatesNewUsers
    *
    * @param  array<string, string>  $input
    */
+  // public function create(array $input): User
+  // {
+  //   Validator::make($input, [
+  //     ...$this->profileRules(),
+  //     'password' => $this->passwordRules(),
+  //   ])->validate();
+
+  //   return User::create([
+  //     'name' => $input['name'],
+  //     'email' => $input['email'],
+  //     'password' => bcrypt($input['password']),
+  //     'avatar' => $input['avatar'] ?? null,
+  //   ]);
+  // }
+
+
   public function create(array $input): User
   {
     Validator::make($input, [
@@ -24,11 +40,16 @@ class CreateNewUser implements CreatesNewUsers
       'password' => $this->passwordRules(),
     ])->validate();
 
+    $avatarPath = null;
+    if (isset($input['avatar'])) {
+      $avatarPath = $input['avatar']->store('avatars', 'public'); // stocke le fichier
+    }
+
     return User::create([
       'name' => $input['name'],
       'email' => $input['email'],
-      'password' => $input['password'],
-      'avatar' => ['nullable', 'image', 'max:2048'],
+      'password' => bcrypt($input['password']),
+      'avatar' => $avatarPath,
     ]);
   }
 }

@@ -1629,15 +1629,21 @@ namespace App\Models {
    * @property \Illuminate\Support\Carbon|null $two_factor_confirmed_at
    * @property string|null $two_factor_recovery_codes
    * @property string|null $two_factor_secret
-   * @property string $password
+   * @property string|null $password
    * @property \Illuminate\Support\Carbon|null $email_verified_at
    * @property string $email
+   * @property string|null $google_refresh_token
+   * @property string|null $google_token
+   * @property string|null $google_id
    * @property string $name
    * @property int $id
    * @property-read \Illuminate\Database\Eloquent\Collection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
    * @property-read int|null $notifications_count
    * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereId($value)
    * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereName($value)
+   * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereGoogleId($value)
+   * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereGoogleToken($value)
+   * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereGoogleRefreshToken($value)
    * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereEmail($value)
    * @method static \Illuminate\Database\Eloquent\Builder<User>|User whereEmailVerifiedAt($value)
    * @method static \Illuminate\Database\Eloquent\Builder<User>|User wherePassword($value)
