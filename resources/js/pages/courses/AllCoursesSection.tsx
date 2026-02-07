@@ -10,8 +10,7 @@ import CourseCard from './components/CourseCard';
 
 export default function AllCoursesSection() {
   const { courses } = usePage().props;
-  // const courses = [1, 2, 1, 2, 1, 2, 1];
-  console.log(courses);
+
 
   return (
     <>

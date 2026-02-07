@@ -222,7 +222,7 @@ export default function Pricing() {
             </span>
             <br />
             <span className="bg-gradient-to-b from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-              et adaptés au Cameroun
+              et transparents
             </span>
           </h2>
           <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">
@@ -237,8 +237,8 @@ export default function Pricing() {
             <div
               key={key}
               className={`relative bg-slate-900/50 backdrop-blur-sm border rounded-xl sm:rounded-2xl p-6 sm:p-8 transition-all duration-300 overflow-visible group flex flex-col h-full ${plan.mostPopular
-                  ? "border-blue-500 shadow-2xl shadow-blue-500/20 lg:scale-105"
-                  : "border-slate-800 hover:border-slate-700"
+                ? "border-blue-500 shadow-2xl shadow-blue-500/20 lg:scale-105"
+                : "border-slate-800 hover:border-slate-700"
                 }`}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -translate-x-full -translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 pointer-events-none rounded-lg" />
@@ -288,8 +288,8 @@ export default function Pricing() {
 
               <button
                 className={`w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold transition-all duration-300 mt-auto hover:scale-102 cursor-pointer text-sm sm:text-base ${plan.mostPopular
-                    ? "bg-gradient-to-b from-blue-500 to-cyan-500 hover:brightness-110"
-                    : "bg-white/5 border border-white/10 hover:bg-white/10"
+                  ? "bg-gradient-to-b from-blue-500 to-cyan-500 hover:brightness-110"
+                  : "bg-white/5 border border-white/10 hover:bg-white/10"
                   }`}
               >
                 Commencer maintenant

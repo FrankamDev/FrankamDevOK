@@ -28,9 +28,8 @@ return new class extends Migration
 
       $table->integer('reading_duration')->nullable();  // minutes estimées
 
-      $table->integer('order')->default(0);
-
-      // Pour gérer les quizzes dans la même table (minimal)
+      $table->integer('position')->default(0);
+      $table->string('pdf_path')->nullable();
       $table->boolean('is_quiz')->default(false);
       $table->json('quiz_data')->nullable();            // questions/réponses si quiz simple
 

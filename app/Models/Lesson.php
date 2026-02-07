@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class Lesson extends Model
@@ -16,7 +17,8 @@ class Lesson extends Model
     'video_url',
     'video_duration',
     'reading_duration',
-    'order',
+    'position',
+    'pdf_path',
     'is_quiz',
     'quiz_data',
     'type',
@@ -31,5 +33,14 @@ class Lesson extends Model
   public function course()
   {
     return $this->belongsTo(Course::class);
+  }
+
+  protected static function boot()
+  {
+    parent::boot();
+
+    static::creating(function ($lesson) {
+      $lesson->slug = Str::slug($lesson->title);
+    });
   }
 }
