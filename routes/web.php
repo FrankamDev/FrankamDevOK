@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LessonController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -16,6 +17,10 @@ use Laravel\Socialite\Facades\Socialite;
 |--------------------------------------------------------------------------
 */
 
+Route::get(
+  '/courses/{course:slug}/lessons/{lesson:slug}',
+  [LessonController::class, 'showLesson']
+)->name('lessons.show');
 // ------------------- HOME -------------------
 Route::get('/', [HomeController::class, 'index'])->name('home');
 

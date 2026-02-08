@@ -52,7 +52,7 @@ class CourseController extends Controller
 
     $lesson->increment('views');
 
-    return Inertia::render('courses/LessonShow', [
+    return Inertia::render('Lessons/LessonShow', [
       'course' => [
         'title' => $course->title,
         'slug' => $course->slug,

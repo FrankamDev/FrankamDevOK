@@ -17,10 +17,10 @@ return new class extends Migration
       $table->string('title', 150);
       $table->string('image')->nullable();
       $table->string('slug', 160)->unique();
-      $table->foreignId('category_id')->nullable()->constrained()->onDelete('cascade');
+
 
       $table->enum('level', ['beginner', 'intermediate', 'advanced']);
-      $table->integer('reading_duration')->nullable();     // en minutes
+      $table->integer('reading_duration')->nullable();
       $table->decimal('duration_hours', 5, 1)->nullable(); // ex: 14.5
 
       $table->integer('total_lessons')->default(0);
@@ -30,9 +30,9 @@ return new class extends Migration
 
       $table->string('logo')->nullable();                  // chemin ou URL
 
-      $table->boolean('is_popular')->default(false);
+      $table->boolean('is_popular')->default(false)->nullable();
 
-      $table->boolean('certified')->default(false);
+      $table->boolean('certified')->default(false)->nullable();
 
       $table->longText('objectives')->nullable();
       $table->longText('prerequisites')->nullable();
@@ -42,10 +42,10 @@ return new class extends Migration
 
       // Tarification & accès
       $table->decimal('price', 10, 2)->nullable()->default(0);
-      $table->string('currency', 3)->default('EUR');
+      $table->string('currency')->default('EUR')->nullable();
       $table->enum('access_type', ['free', 'paid', 'one_time', 'subscription'])->default('free');
 
-      // Statut publication
+
       $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
       $table->timestamp('published_at')->nullable();
 

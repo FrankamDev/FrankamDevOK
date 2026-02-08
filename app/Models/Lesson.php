@@ -18,6 +18,7 @@ class Lesson extends Model
     'video_duration',
     'reading_duration',
     'position',
+    'reading_time',
     'pdf_path',
     'is_quiz',
     'quiz_data',

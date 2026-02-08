@@ -9,37 +9,30 @@ return new class extends Migration
   /**
    * Run the migrations.
    */
+
+
   public function up(): void
   {
     Schema::create('lessons', function (Blueprint $table) {
       $table->id();
       $table->foreignId('course_id')->constrained()->cascadeOnDelete();
-
-      $table->integer('module_number')->nullable();     // 1, 2, 3...
-      $table->integer('lesson_number');                 // ordre dans le module
-
+      $table->integer('reading_time')->nullable();
+      $table->string('slug')->unique()->nullable();
+      $table->integer(column: 'module_number')->nullable();
+      $table->integer('lesson_number');
+      $table->integer('views')->default(0);
       $table->string('title', 180);
-      $table->string('slug', 200);
-
-      $table->longText('content')->nullable();          // texte riche
-
-      $table->string('video_url')->nullable();
-      $table->integer('video_duration')->nullable();    // secondes
-
-      $table->integer('reading_duration')->nullable();  // minutes estimées
-
+      $table->longText('content')->nullable();
+      $table->string(column: 'video_url')->nullable();
+      $table->integer('video_duration')->nullable();
+      $table->integer('reading_duration')->nullable();
       $table->integer('position')->default(0);
       $table->string('pdf_path')->nullable();
       $table->boolean('is_quiz')->default(false);
-      $table->json('quiz_data')->nullable();            // questions/réponses si quiz simple
-
+      $table->longText('quiz_data')->nullable();
       $table->enum('type', ['video', 'text', 'quiz', 'file', 'mixed'])->default('text');
-
       $table->enum('status', ['draft', 'published'])->default('draft');
-
       $table->timestamps();
-
-      // Unicité du slug par cours
       $table->unique(['course_id', 'slug']);
     });
   }
