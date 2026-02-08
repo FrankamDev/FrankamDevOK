@@ -674,7 +674,7 @@ export default function LessonShow() {
             <div
               ref={contentRef}
               className="
-               content prose prose-invert max-w-none mb-16
+               content
               "
               dangerouslySetInnerHTML={{ __html: processedContent || lesson.content }}
             />
