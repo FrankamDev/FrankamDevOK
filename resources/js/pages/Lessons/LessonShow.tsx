@@ -389,6 +389,7 @@ import {
 } from 'react-icons/fi';
 import Navbar from '@/components/NavBar';
 import './lesson.css';
+import ScrollBar from '@/components/ScrollBar';
 interface Course {
   title: string;
   slug: string;
@@ -426,26 +427,72 @@ export default function LessonShow() {
   const contentRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  // 1. Traitement du contenu + extraction des headings
+
+  const addCopyButtons = () => {
+    const blocks = document.querySelectorAll('.content pre');
+
+    blocks.forEach((block) => {
+      if (block.querySelector('.copy-btn')) return;
+
+      block.style.position = "relative";
+
+      const button = document.createElement('button');
+      button.className = 'copy-btn';
+      button.innerHTML = `
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      `;
+
+      button.style.position = "absolute";
+      button.style.top = "8px";
+      button.style.right = "8px";
+      button.style.background = "transparent";
+      button.style.border = "none";
+      button.style.cursor = "pointer";
+      button.style.color = "#9ca3af";
+
+      button.onclick = async () => {
+        const code =
+          block.querySelector('code')?.textContent || block.textContent || '';
+
+        await navigator.clipboard.writeText(code.trim());
+
+        // Icône check temporaire
+        button.innerHTML = `
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        `;
+
+        setTimeout(() => {
+          button.innerHTML = `
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          `;
+        }, 1500);
+      };
+
+      block.appendChild(button);
+    });
+  };
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+    const timeout = setTimeout(() => {
+      addCopyButtons();
+    }, 200);
 
-    document.querySelectorAll('.content > *').forEach((el) => {
-      observer.observe(el);
-    });
-
-    return () => observer.disconnect();
+    return () => clearTimeout(timeout);
   }, []);
+
+
+
   useEffect(() => {
     if (!lesson.content) {
       setProcessedContent('<p class="text-gray-500 italic">Aucun contenu disponible.</p>');
@@ -482,66 +529,6 @@ export default function LessonShow() {
     setIsLoading(false);
   }, [lesson.content]);
 
-
-  const addCopyButtons = () => {
-    const blocks = document.querySelectorAll('.content pre');
-
-    blocks.forEach((block) => {
-      // Évite d’ajouter plusieurs boutons
-      if (block.querySelector('.copy-button')) return;
-
-      const button = document.createElement('button');
-      button.className = 'copy-button';
-      button.innerHTML = `
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-        </svg>
-        Copier
-      `;
-      button.setAttribute('data-tooltip', 'Copier');
-
-      button.onclick = () => {
-        const code = block.querySelector('code')?.textContent || block.textContent || '';
-        navigator.clipboard.writeText(code.trim()).then(() => {
-          button.innerHTML = `
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
-            Copié !
-          `;
-          button.classList.add('copied');
-          button.setAttribute('data-tooltip', 'Copié !');
-
-          setTimeout(() => {
-            button.innerHTML = `
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-              </svg>
-              Copier
-            `;
-            button.classList.remove('copied');
-            button.setAttribute('data-tooltip', 'Copier');
-          }, 2000);
-        });
-      };
-
-      block.appendChild(button);
-    });
-  };
-
-  // Ajoute les boutons après que le contenu soit chargé
-  useEffect(() => {
-    if (!isLoading) {
-      // On attend un petit peu que le DOM soit vraiment prêt
-      const timeout = setTimeout(() => {
-        addCopyButtons();
-      }, 300);
-
-      return () => clearTimeout(timeout);
-    }
-  }, [isLoading, processedContent]); // ou lesson.content selon ta version
   // 2. Observer les headings pour highlight
   useEffect(() => {
     if (headings.length === 0 || !contentRef.current) return;
@@ -682,7 +669,8 @@ export default function LessonShow() {
               )}
             </div>
 
-            {/* Contenu riche avec les IDs ajoutés */}
+
+            <ScrollBar />
             <div
               ref={contentRef}
               className="

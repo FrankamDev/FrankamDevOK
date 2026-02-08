@@ -226,6 +226,7 @@ export default function Footer() {
                   <item.icon />
                 </motion.a>
               ))}
+
             </div>
 
             {/* Bouton spécial */}
@@ -240,9 +241,9 @@ export default function Footer() {
         </div>
 
         {/* Barre inférieure */}
-        <div className="mt-16 pt-10 border-t border-white/5 flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-sm text-gray-500">
+        <div className="mt-4 pt-8 border-t border-white/5 flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-sm text-gray-500">
           <div>
-            © {currentYear} FrankamDev Pro – Tous droits réservés.
+            © {currentYear} FrankamDev – Tous droits réservés.
           </div>
 
           <div className="flex items-center gap-6">

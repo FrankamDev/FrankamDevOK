@@ -5,6 +5,7 @@ import { FaArrowRight } from 'react-icons/fa6';
 import { ToastContainer, toast } from 'react-toastify';
 import Member from '@/components/Member';
 
+import ScrollBar from '@/components/ScrollBar';
 import Footer from '../../components/Footer';
 import NavBar from '../../components/NavBar';
 import Navbar from '../../components/NavBar';
@@ -164,6 +165,7 @@ export default function Home() {
 
 
         <Member />
+        <ScrollBar />
 
         <div className="">
           {/* <Test /> */}
