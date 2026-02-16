@@ -9,8 +9,8 @@ import {
   FiList,
   FiChevronRight,
 } from 'react-icons/fi';
-import ScrollBar from '@/components/ScrollBar';
 import LessonSkeleton from '@/components/LessonSkelleton';
+import ScrollBar from '@/components/ScrollBar';
 
 // Types restants identiques...
 interface Heading { id: string; text: string; level: number; }
@@ -49,21 +49,30 @@ export default function LessonShow() {
     const currentContent = contentRef.current;
     currentContent?.addEventListener('click', handleCopyClick);
 
-    // Injection des boutons une seule fois
+    // À l'intérieur de ton useEffect qui traite le contenu
     const blocks = currentContent?.querySelectorAll('pre');
     blocks?.forEach((block) => {
       if (block.querySelector('.copy-btn')) return;
+
       const button = document.createElement('button');
       button.className = 'copy-btn';
       button.setAttribute('type', 'button');
-      button.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+
+      // Structure : Icône + Texte (optionnel mais pro)
+      button.innerHTML = `
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+    </svg>
+    <span>Copier</span>
+  `;
+
       block.appendChild(button);
     });
 
     return () => currentContent?.removeEventListener('click', handleCopyClick);
   }, [isLoading, processedContent]);
 
-  // Parsing du contenu et génération du sommaire
   useEffect(() => {
     if (!lesson.content) {
       setProcessedContent('<p class="text-gray-500 italic">Aucun contenu disponible.</p>');

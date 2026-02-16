@@ -1,4 +1,75 @@
-1. RESET & BASE (Empêche le débordement global)
+
+
+/* Conteneur de code */
+.rich-text-container pre {
+    position: relative; /* Indispensable pour le positionnement du bouton */
+    padding: 1.5rem !important;
+    padding-top: 3rem !important; /* Espace supplémentaire en haut pour le bouton */
+    background: #01010c !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow-x: auto;
+}
+
+/* Style du bouton de copie */
+.copy-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #94a3b8;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    backdrop-filter: blur(4px);
+}
+
+/* Hover : plus brillant et visible */
+.copy-btn:hover {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: rgba(99, 102, 241, 0.4);
+    color: #e0e7ff;
+    transform: translateY(-1px);
+}
+
+/* État "Copié" */
+.copy-btn.copied {
+    background: #10b981;
+    border-color: #10b981;
+    color: white;
+}
+
+/* Animation de l'icône dans le bouton */
+.copy-btn svg {
+    transition: transform 0.2s ease;
+}
+
+.copy-btn:active svg {
+    transform: scale(0.9);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 html, body {
   overflow-x: hidden;
   width: 100%;
@@ -124,16 +195,17 @@ html, body {
 /* 7. BOUTON COPIER */
 .copy-button {
   position: absolute;
-  top: 0.5rem;
+  /* top: 0.5rem;
   right: 0.5rem;
   background: rgba(30, 41, 59, 0.8);
-  color: #cbd5e1;
+  color: #003677;
   border: 1px solid #334155;
   padding: 4px 8px;
+  top: 0;
   font-size: 0.75rem;
   border-radius: 4px;
   cursor: pointer;
-  z-index: 5;
+  z-index: 5; */
 }
 
 .copy-button:hover {
