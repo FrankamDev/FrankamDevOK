@@ -101,7 +101,17 @@ export default function LessonShow() {
   }, [lesson.content]);
 
   if (isLoading) return <LessonSkeleton />;
+  const [scrollProgress, setScrollProgress] = useState(0);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalHeight) * 200;
+      setScrollProgress(progress);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   return (
     <>
       <Head title={`${lesson.title}`} />
