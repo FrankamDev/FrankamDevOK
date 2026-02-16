@@ -6,7 +6,9 @@
   font-weight: 400;
   letter-spacing: -0.01em;
 }
-
+html, body {
+  overflow-x: hidden;
+}
 .content h1,
 .content h2,
 .content h3,
@@ -272,7 +274,7 @@
 }
 
 
-.content pre {
+/* .content pre {
   position: relative;
   margin: 1.8em 0;
   padding: 1.4rem 1.4rem 1rem;
@@ -281,7 +283,7 @@
   border-radius: 12px;
   overflow-x: auto;
   box-shadow: 0 8px 25px -6px rgba(0, 0, 0, 0.5);
-}
+} */
 /* Bouton copier fixe et toujours visible */
 .content pre {
   position: relative;
@@ -294,7 +296,7 @@
   box-shadow: 0 8px 25px -6px rgba(0, 0, 0, 0.5);
 }
 
-.content pre .copy-button {
+ .copy-button {
   position: absolute;
   top: 0.8rem;
   right: 0.8rem;
@@ -314,7 +316,7 @@
   opacity: 0.85;
 }
 
-.content pre .copy-button:hover {
+.copy-button:hover {
   opacity: 1;
   background: #6366f1;
   color: white;
@@ -322,7 +324,7 @@
   transform: translateY(-1px);
 }
 
-.content pre .copy-button.copied {
+ .copy-button.copied {
   background: #10b981 !important;
   border-color: #10b981 !important;
   color: white !important;
@@ -330,7 +332,7 @@
 }
 
 /* Petit tooltip en dessous */
-.content pre .copy-button::after {
+.copy-button::after {
   content: attr(data-tooltip);
   position: absolute;
   bottom: -32px;
@@ -349,4 +351,35 @@
 .content pre .copy-button:hover::after,
 .content pre .copy-button.copied::after {
   opacity: 1;
+}
+
+
+
+
+
+/* Bloc de code principal */
+.content pre {
+  font-size: 0.85rem;         
+  line-height: 1.4;           /* Espacement des lignes */
+  padding: 12px;              /* Padding interne */
+  background-color: #1e1e2f;  /* Fond sombre pour contraste */
+  color: #f5f5f5;             /* Couleur du texte */
+  border-radius: 8px;         /* Coins arrondis */
+  overflow-x: auto;           /* Scroll horizontal si code trop large */
+  font-family: 'Fira Code', monospace; /* Police monospace */
+}
+
+/* Code inline (dans un paragraphe) */
+.content code {
+  font-size: 0.9rem;
+  background-color: #2a2a3b;
+  color: #f0f0f0;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: 'Fira Code', monospace;
+}
+
+/* Optionnel : survol du bloc de code */
+.content pre:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
