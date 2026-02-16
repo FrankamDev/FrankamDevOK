@@ -395,7 +395,7 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
                 <Link
                   prefetch
                   href="/login" className="text-sm font-semibold text-gray-400 hover:text-white transition-colors">Connexion</Link>
-                <Link href="/register" className="px-5 py-2.5 bg-white text-slate-950 text-sm font-bold rounded-full hover:bg-cyan-400 transition-all shadow-lg shadow-white/5 active:scale-95">
+                <Link href="/register" className="px-5 py-2.5 bg-white text-slate-950 text-sm font-bold rounded-[7px] hover:bg-cyan-400 transition-all shadow-lg shadow-white/5 active:scale-95">
                   Rejoindre
                 </Link>
               </div>
