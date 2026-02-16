@@ -36,7 +36,7 @@ export default function Register() {
     setData('avatar', null);
     setPreview(null);
     if (fileInputRef.current) {
-      fileInputRef.current.value = ''; // reset l'input file
+      fileInputRef.current.value = '';
     }
   };
 
