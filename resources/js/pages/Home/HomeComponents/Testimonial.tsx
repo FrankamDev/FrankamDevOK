@@ -3,7 +3,7 @@ const testimonials = [
     name: "Bokou Laurenne",
     role: "Développeuse Back-end – Douala",
     image:
-      "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200",
+      "",
     content:
       "FrankamDev a complètement changé ma façon de coder. Les suggestions de l’IA me font gagner énormément de temps tous les jours, même quand la connexion est capricieuse.",
   },
@@ -11,7 +11,7 @@ const testimonials = [
     name: "Paul Kamdem",
     role: "Lead Developer – Bafoussam",
     image:
-      "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=200",
+      "",
     content:
       "Les tests automatisés et le débogage intelligent, c’est du lourd ! On livre beaucoup plus vite et avec beaucoup moins de stress. Vraiment un game-changer pour l’équipe.",
   },
@@ -19,7 +19,7 @@ const testimonials = [
     name: "Junior T.",
     role: "Freelance & Formateur – Bafoussam",
     image:
-      "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=200",
+      "",
     content:
       "Depuis que j’utilise FrankamDev, je code trois fois plus vite et mes clients sont bluffés par la qualité. C’est comme avoir un senior qui code à côté de moi 24/7. Vraiment du bon boulot !",
   },
