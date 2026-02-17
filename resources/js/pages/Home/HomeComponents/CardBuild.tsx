@@ -6,7 +6,7 @@ const cours = [
     description:
       'Apprenez à construire un portfolio interactif avec TailwindCSS, Three.js et React.',
     image: 'https://cdn-icons-png.flaticon.com/512/1822/1822899.png',
-    lien: 'https://portfolioo-beta-wine.vercel.app/',
+    lien: 'https://online.getomiie.com',
   },
   // {
   //   titre: 'Analyse de CV par IA',
