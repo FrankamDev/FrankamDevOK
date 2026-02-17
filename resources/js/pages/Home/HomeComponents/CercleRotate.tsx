@@ -168,7 +168,7 @@ export default function TechShowcaseFire() {
             Écosystème Web Moderne
           </h2>
           <p className="text-lg md:text-xl lg:text-2xl text-gray-200/90 max-w-3xl mx-auto leading-relaxed">
-            React • Next.js • TypeScript • Tailwind • Svelte • Node • GraphQL • Vercel • Supabase • Vite...
+            React • Next.js • TypeScript • TailwindCSS • Laravel • Node • GraphQL • Vercel • Supabase • Vite...
           </p>
         </div>
       </div>
