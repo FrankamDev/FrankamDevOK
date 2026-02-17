@@ -1,7 +1,7 @@
 const testimonials = [
   {
     name: "Bokou Laurenne",
-    role: "Développeuse Back-end – Douala",
+    role: "Développeuse Back-end – Bafoussam",
     image:
       "",
     content:
@@ -9,7 +9,7 @@ const testimonials = [
   },
   {
     name: "Paul Kamdem",
-    role: "Lead Developer – Bafoussam",
+    role: "Lead Developer – Douala",
     image:
       "",
     content:
@@ -17,7 +17,7 @@ const testimonials = [
   },
   {
     name: "Junior T.",
-    role: "Freelance & Formateur – Bafoussam",
+    role: "Freelance & Formateur – Buea",
     image:
       "",
     content:

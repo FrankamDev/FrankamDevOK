@@ -32,7 +32,7 @@ const MeetMe = () => {
           className="text-center mb-16 md:mb-20"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-            Salut, moi c’est <span className="text-blue-400">Frank</span> 👋
+            Yo, moi c’est <span className="text-blue-400">Frank</span> 👋
           </h2>
           <p className="mt-5 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Ton compagnon de route pour apprendre à coder sans te prendre la tête, et avancer vraiment.
@@ -139,8 +139,8 @@ const MeetMe = () => {
               className="bg-gradient-to-r from-indigo-950/40 to-purple-950/30 border border-indigo-500/20 rounded-2xl p-7 md:p-9 text-center italic text-lg md:text-xl leading-relaxed text-gray-200"
             >
               <p>
-                « Je suis passé par tous les galères que tu vis aujourd’hui.<br />
-                Et je sais exactement ce qui fait vraiment avancer. »
+                « J'suis passé par toutes les galères que tu vis aujourd’hui.<br />
+                Et j'sais exactement c'qui fait vraiment avancer. »
               </p>
               <p className="mt-4 text-blue-400 font-medium not-italic">
                 — Frank
