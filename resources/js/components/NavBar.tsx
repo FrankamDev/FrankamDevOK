@@ -347,10 +347,10 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
         <div className="flex items-center justify-between h-14">
 
           {/* LOGO */}
-          <Link href="/" className="relative z-[110] flex items-center group">
+          <Link href="/" prefetch className="relative z-[110] flex items-center group">
             <div className="text-2xl font-black tracking-tighter flex items-center">
               <span className="text-white group-hover:text-cyan-400 transition-colors">Frankam</span>
-              <span className="bg-cyan-500 text-slate-950 rounded-md ml-1 transform group-hover:rotate-3 transition-transform">Dev</span>
+              <span className="text-slate-100  transform group-hover:rotate-3 transition-transform">Dev</span>
             </div>
           </Link>
 

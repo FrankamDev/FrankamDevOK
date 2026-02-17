@@ -104,6 +104,7 @@ import {
   FaHeart,
   FaArrowUp,
 } from 'react-icons/fa6';
+import NewsletterForm from './NewsletterForm';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -132,7 +133,7 @@ export default function Footer() {
             {/* Newsletter simple */}
             <div className="mt-6">
               <p className="text-sm text-gray-400 mb-3">Restez informé des nouvelles formations</p>
-              <form className="flex flex-col sm:flex-row gap-3 max-w-md">
+              {/* <form className="flex flex-col sm:flex-row gap-3 max-w-md">
                 <input
                   type="email"
                   placeholder="ton@email.com"
@@ -144,7 +145,8 @@ export default function Footer() {
                 >
                   S’inscrire
                 </button>
-              </form>
+              </form> */}
+              <NewsletterForm />
             </div>
           </div>
 
